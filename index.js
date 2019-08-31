@@ -10,10 +10,6 @@ const pool = new Pool({
   port: 5432
 })
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
-
 app.get('/',function(req,res){
 	pool.query('CREATE TABLE Persons (\
 	    PersonID int,\
