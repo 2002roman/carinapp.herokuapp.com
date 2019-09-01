@@ -1,5 +1,5 @@
 var access = require('../models/access');
-const config = require('./config/setting.js')
+const config = require('../../config/setting.js')
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken')
 var fs = require('fs')
