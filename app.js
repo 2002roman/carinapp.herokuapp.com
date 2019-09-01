@@ -34,6 +34,6 @@ app.get('/test',function(req,res){
 require('./config/routes.js')(app, passport)
 
 var port = process.env.PORT || 3000;
-server.listen(port,()=>{
+app.listen(port,()=>{
 	console.log('Server started in port '+port)
 })
