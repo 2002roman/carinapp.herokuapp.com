@@ -15,3 +15,5 @@ exports.corsCon = {
     'methods':['GET', 'HEAD', 'OPTIONS','POST','DELETE'],
     'credentials': true
 }
+exports.authenticationSuccessRedirect = "https://carinapp.herokuapp.com/test";
+exports.authenticationFailedRedirect = "https://carinapp.herokuapp.com/test/error";

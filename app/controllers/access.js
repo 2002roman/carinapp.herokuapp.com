@@ -1,4 +1,5 @@
 var access = require('../models/access');
+const config = require('./config/setting.js')
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken')
 var fs = require('fs')
@@ -67,6 +68,6 @@ exports.facebookC = (req,res)=>{
         })
         res.cookie('token',req.user.accessToken)
         res.cookie('typeAccess',"facebook")
-    }else res.redirect('http://localhost:8081/access/error')
-    res.redirect('http://localhost:8081/user/profile')
+    }else res.redirect(config.authenticationFailedRedirect)
+    res.redirect(config.authenticationSuccessRedirect)
 }
