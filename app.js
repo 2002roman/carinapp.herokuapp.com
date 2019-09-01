@@ -10,30 +10,30 @@ const app = require('express')()
 // 	key : fs.readFileSync('config/https/privatekey.pem')
 // }, app)
 
-// require('./config/passport')(passport)
+require('./config/passport')(passport)
 
-// app.set('views', __dirname + '/views');
-// app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
 
-// app.use(passport.initialize());
-// app.use(passport.session())
-// app.use(require('morgan')('dev'))
-// app.use(require('cookie-parser')())
-// app.use(require('body-parser').urlencoded({limit : '500mb', extended: false }))
-// app.use(require('body-parser').json({limit : '500mb'}))
-// app.use(require('cors')(config.corsCon))
-// app.all('*',(req,res,next)=>{
-// 	res.append('Access-Control-Allow-Headers', ['Origin, X-Requested-With, Content-Type, Accept'])
-// 	next()
-// })
+app.use(passport.initialize());
+app.use(passport.session())
+app.use(require('morgan')('dev'))
+app.use(require('cookie-parser')())
+app.use(require('body-parser').urlencoded({limit : '500mb', extended: false }))
+app.use(require('body-parser').json({limit : '500mb'}))
+app.use(require('cors')(config.corsCon))
+app.all('*',(req,res,next)=>{
+	res.append('Access-Control-Allow-Headers', ['Origin, X-Requested-With, Content-Type, Accept'])
+	next()
+})
 app.get('/test',function(req,res){
 	res.send('hello');
 	console.log('okokokokokokok')
 })
 
-// require('./config/routes.js')(app, passport)
+require('./config/routes.js')(app, passport)
 
 var port = process.env.PORT || 3000;
-app.listen(port,()=>{
+server.listen(port,()=>{
 	console.log('Server started in port '+port)
 })
