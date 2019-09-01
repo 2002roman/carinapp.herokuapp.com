@@ -27,6 +27,7 @@ app.all('*',(req,res,next)=>{
 })
 app.get('/test',function(req,res){
 	res.send('hello');
+	console.log('okokokokokokok')
 })
 
 require('./config/routes.js')(app, passport)
