@@ -42,15 +42,18 @@ exports.login = (username,password,done)=>{
 
 exports.regin = (username,password,done)=>{
     access.checkUser(username,(res)=>{
+        console.log(res)
         if(res){
+        console.log('res is exit')
             done(null,{
                 statusInQuery: false,
                 err:"Username busy"
             })
         }else{
+        console.log('res is empty')
             generateHash(password,(err,hash)=>{
                 access.signupUser(username,getUniqueAccessTokenJWT(username),hash,(token)=>{
-                    fs.mkdirSync("./usersFiles/"+username+"-files")
+                    // fs.mkdirSync("./usersFiles/"+username+"-files")
                     done(null,{
                         statusInQuery: true,
                         token
