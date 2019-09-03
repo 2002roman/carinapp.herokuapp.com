@@ -53,7 +53,7 @@ query = "INSERT INTO users(uniqueData, name, token,typeAccess) VALUES ('"+'user.
 con.query(query,function(res,err) {
 	console.log('first query')
 	console.log('res',res)
-	//console.log('err',err)
+	console.log('err',err)
 })
 query = "select * from users"
 con.query(query,function(res,err) {
@@ -61,5 +61,5 @@ con.query(query,function(res,err) {
 	console.log('sec query')
 	console.log('res',res)
 
-	// console.log('err',err)
+	console.log('err',err)
 })
