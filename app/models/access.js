@@ -22,7 +22,7 @@ class access{
 		var query = "SELECT * FROM users WHERE typeAccess='local' and uniqueData='"+username+"'"
 		con.query(query,(err,res)=>{
 			console.log(res)
-			callback(res.rowCount==0)
+			//callback(res.rowCount==0)
 		}) 
 		con.end()
 	}
