@@ -16,7 +16,7 @@
                     <router-link :to="{ name: formCardOption.redirectParams.link }">{{formCardOption.redirectParams.name}}</router-link></h6>
                     </form>
                     <button id="fcButton">
-                        <a href="https://localhost:8808/facebook">Connect with Facebook</a>
+                        <a href="https://carinapp.herokuapp.com/facebook">Connect with Facebook</a>
                     </button>
             </div>
         </div>
@@ -44,7 +44,7 @@ axios.defaults.withCredentials = true
                     models[model.name] = model.model
                 }
                 console.log(models)
-                axios.post('https://localhost:8808/'+this.$route.name,models).then(function (response) {
+                axios.post('https://carinapp.herokuapp.com/'+this.$route.name,models).then(function (response) {
                     if(response.data==true){
                         vueThis.$store.commit('waveRaising',"1")
                         setTimeout(function(){
@@ -60,7 +60,7 @@ axios.defaults.withCredentials = true
         },
         beforeCreate(){
            var vueThis = this
-            axios("https://localhost:8808/verify").then(function(res){
+            axios("https://carinapp.herokuapp.com/verify").then(function(res){
                 if(res.data==true){
                     vueThis.$router.push('/user/profile')
                     console.log("")

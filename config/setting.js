@@ -11,7 +11,7 @@ exports.facebookCon = {
     'callbackURL' : "https://carinapp.herokuapp.com/facebook/callback"
 };
 exports.corsCon = {
-	'origin':['http://localhost:8081'],
+	'origin':['http://localhost:8080'],
     'methods':['GET', 'HEAD', 'OPTIONS','POST','DELETE'],
     'credentials': true
 }

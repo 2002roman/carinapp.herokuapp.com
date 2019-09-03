@@ -149,7 +149,7 @@ export default {
     z-index:0;
   }
   body{
-    background-image:url("https://localhost:8808/public/img/img.jpg");
+    background-image:url("https://carinapp.herokuapp.com/public/img/img.jpg");
     background-size:cover;
     text-align:center;
   }
