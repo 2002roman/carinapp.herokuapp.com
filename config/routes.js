@@ -20,7 +20,7 @@ module.exports = function (app, passport) {
         {
             failureRedirect: '/regin'
         }),(req,res)=>{
-            console.log(req.user,'ikiejdijdijij')
+            // console.log(req.user,'ikiejdijdijij')
             if(req.user.statusInQuery){
                 res.cookie("token",req.user.token)
                 res.cookie("typeAccess","local")
