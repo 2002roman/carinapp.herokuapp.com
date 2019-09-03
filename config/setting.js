@@ -1,8 +1,8 @@
 exports.pgCon = {
-    'user' : 'aoarpgboekmezt',
-    'host' : 'ec2-23-21-148-223.compute-1.amazonaws.com',
-    'database' : 'db1koekpfjahur',
-    'password' : '0199b9b831c2d2ce5b7cd4404e358ffa23009a61993904586b512d45f8c92692',
+    'user' : 'jmisxwifsbrdbh',
+    'host' : 'ec2-174-129-209-212.compute-1.amazonaws.com',
+    'database' : 'dc7cvv5em9dmdr',
+    'password' : '1443c7d4942f246ca5724122ecc850eb8d7f9b6866d2f5a4246c71e2ecff5922',
     'port' : 5432
 };
 exports.facebookCon = {
