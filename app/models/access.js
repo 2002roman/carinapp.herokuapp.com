@@ -21,8 +21,6 @@ class access{
 		const con = new Pool(config.pgCon);
 		var query = "SELECT * FROM users WHERE typeAccess='local' and uniqueData='"+username+"'"
 		con.query(query,(err,res)=>{
-			console.log('err:',err)
-			console.log('res:',res)
 			callback(res.rowCount==0)
 		}) 
 		con.end()
@@ -32,9 +30,9 @@ class access{
 		// con.connect()
 		const con = new Pool(config.pgCon);
 		var query = "INSERT INTO users(uniqueData, password, token,typeAccess,typeAccess) VALUES ('"+username+"','"+hash+"','"+token+"','local')"
-		//con.query(query)
+		con.query(query)
 		// con.query("CREATE TABLE `"+username+"-files` (name VARCHAR(255), address VARCHAR(255))")
-		// con.end()
+		con.end()
 		conosle.log(query)
 		callback(token)
 	}
