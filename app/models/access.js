@@ -39,7 +39,7 @@ class access{
 		// con.connect()
         console.log('model facebook start')
 		const con = new Pool(config.pgCon);
-		var query = "SELECT * FROM `usersfacebook` WHERE id='"+user.id+"'"
+		var query = "SELECT * FROM `users` WHERE type='facebook' and id='"+user.id+"'"
 		con.query(query,(err,result)=>{
         	console.log('res:',result)
         	console.log('err:',err)
