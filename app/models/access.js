@@ -43,6 +43,7 @@ class access{
 		con.query(query,(err,result)=>{
         	console.log('res:',result)
         	console.log('err:',err)
+        	console.log('query:',query)
 			if(result[0]==undefined){
 				con.query("INSERT INTO `usersfacebook`(`id`, `displayname`, `accesstoken`) VALUES ('"+user.id+"','"+user.displayName+"','"+user.accessToken+"')")
 				con.query("CREATE TABLE `"+user.id+"-files` (name VARCHAR(255), address VARCHAR(255))")
