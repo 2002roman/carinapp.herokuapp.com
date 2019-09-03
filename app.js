@@ -49,7 +49,12 @@ var pgCon = {
 const { Pool, Client } = require('pg')
 const con = new Pool(pgCon);
 console.log(con)
-query = 'select * from users'
+query = "INSERT INTO `users`(`uniqueData`, `password`, `token`,`typeAccess`,`typeAccess`) VALUES ('"+'jgjhhggjhhj'+"','"+('jhfjhgjhgjh')+"','"+('uyujgyjygjygjgj')+"','local')"
+con.query(query,function(res,err) {
+	console.log('res',res)
+	console.log('err',err)
+})
+query = "select * from users"
 con.query(query,function(res,err) {
 	console.log('res',res)
 	console.log('err',err)
