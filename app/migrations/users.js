@@ -4,7 +4,7 @@ exports.migration = {
              name varchar(255),\
              lastname varchar(255),\
              token varchar(255),\
-             passowrd varchar(255),\
+             password varchar(255),\
              typeAccess varchar(255)\
         );',
     down : 'Drop table users;',
