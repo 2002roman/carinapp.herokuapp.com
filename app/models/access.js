@@ -7,7 +7,7 @@ class access{
 		// const con = require('mysql').createConnection(config.mysqlCon)
 		const con = new Pool(config.pgCon);
 		//con.connect()
-		var query = "SELECT * FROM users WHERE type='local' and uniqueData='"+username+"'"
+		var query = "SELECT * FROM users WHERE typeAccess='local' and uniqueData='"+username+"'"
 		con.query(query,(err,res)=>{
 			// if(res.rowCount!==0) return successCallback(res[0].password)
 			// else failedCallback()
