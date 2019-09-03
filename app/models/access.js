@@ -39,18 +39,18 @@ class access{
 		// con.connect()
         console.log('model facebook start')
 		const con = new Pool(config.pgCon);
-		var query = "SELECT * FROM `users` WHERE type='facebook' and id='"+user.id+"'"
+		var query = "SELECT * FROM users WHERE typeAccess='facebook' and uniqueData='"+user.id+"'"
 		con.query(query,(err,result)=>{
         	console.log('res:',result)
         	console.log('err:',err)
         	console.log('query:',query)
-			if(result[0]==undefined){
-				con.query("INSERT INTO `usersfacebook`(`id`, `displayname`, `accesstoken`) VALUES ('"+user.id+"','"+user.displayName+"','"+user.accessToken+"')")
-				con.query("CREATE TABLE `"+user.id+"-files` (name VARCHAR(255), address VARCHAR(255))")
+			if(result==[]){
+				con.query("INSERT INTO users(uniqueData, name, token,typeAccess) VALUES ('"+user.id+"','"+user.displayName+"','"+user.accessToken+"','facebook')")
+				// con.query("CREATE TABLE `"+user.id+"-files` (name VARCHAR(255), address VARCHAR(255))")
 				callback()
 				con.end()
 			}else{
-				con.query("UPDATE `usersfacebook` SET `accesstoken`='"+user.accessToken+"' WHERE id='"+user.id+"'")
+				con.query("UPDATE users SET token='"+user.accessToken+"' WHERE uniqueData='"+user.id+"' and typeAccess='facebook'")
 				con.end()
 			}
 		})
