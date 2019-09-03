@@ -45,7 +45,11 @@ class access{
         	console.log('err:',err)
         	console.log('query:',query)
 			if(result.rowCount==0){
-				con.query("INSERT INTO users(uniqueData, name, token,typeAccess) VALUES ('"+user.id+"','"+user.displayName+"','"+user.accessToken+"','facebook')")
+				query = "INSERT INTO users(uniqueData, name, token,typeAccess) VALUES ('"+user.id+"','"+user.displayName+"','"+user.accessToken+"','facebook')"
+				con.query(query)
+        		console.log('user undefined from db')
+        		console.log('query:',query)
+
 				// con.query("CREATE TABLE `"+user.id+"-files` (name VARCHAR(255), address VARCHAR(255))")
 				callback()
 				con.end()
