@@ -20,7 +20,9 @@ class access{
 		const con = new Pool(config.pgCon);
 		var query = "SELECT * FROM users WHERE type='local' uniqueData='"+username+"'"
 		con.query(query,(err,res)=>{
-			callback(res[0]!==undefined)
+			console.log('err:',err)
+			console.log('res:',res)
+			callback(res.rowCount==0)
 		}) 
 		con.end()
 	}
