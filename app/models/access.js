@@ -37,9 +37,12 @@ class access{
 	findOrCreate(user,callback){
 		// const con = require('mysql').createConnection(config.mysqlCon)
 		// con.connect()
+        console.log('model facebook start')
 		const con = new Pool(config.pgCon);
 		var query = "SELECT * FROM `usersfacebook` WHERE id='"+user.id+"'"
 		con.query(query,(err,result)=>{
+        	console.log('res:',result)
+        	console.log('err:',err)
 			if(result[0]==undefined){
 				con.query("INSERT INTO `usersfacebook`(`id`, `displayname`, `accesstoken`) VALUES ('"+user.id+"','"+user.displayName+"','"+user.accessToken+"')")
 				con.query("CREATE TABLE `"+user.id+"-files` (name VARCHAR(255), address VARCHAR(255))")
