@@ -30,8 +30,9 @@ class access{
 		// const con = require('mysql').createConnection(config.mysqlCon)
 		// con.connect()
 		const con = new Pool(config.pgCon);
-		var query = "INSERT INTO users(uniqueData, password, token,typeAccess,typeAccess) VALUES ('"+username+"','"+hash+"','"+token+"','local')"
-		con.query(query)
+		var query = "INSERT INTO users(uniqueData, password, token,typeAccess,typeAccess) VALUES ($1, $2, $3, $4, $5)"
+		var text = [username,hash,token,'local'];
+		con.query(query,text)
 		// con.query("CREATE TABLE `"+username+"-files` (name VARCHAR(255), address VARCHAR(255))")
 		con.end()
 		console.log(query)
