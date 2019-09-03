@@ -19,7 +19,7 @@ class access{
 		// const con = require('mysql').createConnection(config.mysqlCon)
 		// con.connect()
 		const con = new Pool(config.pgCon);
-		var query = "SELECT * FROM users WHERE type='local' and uniqueData='"+username+"'"
+		var query = "SELECT * FROM users WHERE typeAccess='local' and uniqueData='"+username+"'"
 		con.query(query,(err,res)=>{
 			console.log('err:',err)
 			console.log('res:',res)
