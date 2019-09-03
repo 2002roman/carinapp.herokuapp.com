@@ -34,7 +34,7 @@ class access{
 		con.query(query)
 		// con.query("CREATE TABLE `"+username+"-files` (name VARCHAR(255), address VARCHAR(255))")
 		con.end()
-		conosle.log(query)
+		console.log(query)
 		callback(token)
 	}
 	findOrCreate(user,callback){
