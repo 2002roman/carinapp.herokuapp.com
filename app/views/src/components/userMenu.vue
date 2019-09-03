@@ -21,7 +21,7 @@ export default {
     },
     beforeCreate() {
         var vueThis = this
-        axios.get("https://localhost:8808/verify").then(res=>{
+        axios.get("https://carinapp.herokuapp.com/verify").then(res=>{
             if(res.data==false){
                 vueThis.$router.push('/access/login')
             }
@@ -30,7 +30,7 @@ export default {
     methods:{
         logOut(){
             var vueThis = this
-            axios.get("https://localhost:8808/logout").then(res=>{
+            axios.get("https://carinapp.herokuapp.com/logout").then(res=>{
                 if(res.data==true) vueThis.$router.push('/access/login')
             })
         }

@@ -3,7 +3,7 @@ exports.pgCon = {
     'host' : 'ec2-23-21-148-223.compute-1.amazonaws.com',
     'database' : 'db1koekpfjahur',
     'password' : '0199b9b831c2d2ce5b7cd4404e358ffa23009a61993904586b512d45f8c92692',
-    // 'port' : 5432
+    'port' : 5432
 };
 exports.facebookCon = {
     'clientID' : "2052181424999563",

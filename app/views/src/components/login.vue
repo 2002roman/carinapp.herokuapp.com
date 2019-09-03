@@ -15,7 +15,7 @@
               formOption: [
                   {
                       name: "username",
-                      type: "email",
+                      type: "text",
                       label: "Username"
                   },
                   {

@@ -73,7 +73,7 @@ export default {
             async function go() {
                 try {
                     vueThis.uploadBtnT = "Uploaded..."
-                    const response = await axios.post('https://localhost:8808/upload',{files:filesRes})
+                    const response = await axios.post('https://carinapp.herokuapp.com/upload',{files:filesRes})
                     if(response.data==true){
                         filesRes = []
                         vueThis.filesRes = []

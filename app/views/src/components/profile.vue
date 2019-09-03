@@ -6,13 +6,13 @@
                 <div class="imgTitle">
                     <h6>{{file.name}}</h6>
                     <h6>
-                        <a :href="'https://localhost:8808/downloadImage/'+file.address+'/'+file.name" download>
+                        <a :href="'https://carinapp.herokuapp.com/downloadImage/'+file.address+'/'+file.name" download>
                             <font-awesome-icon :icon="['fas', 'download']" style="font-size:50px"/>
                         </a>
                         <font-awesome-icon :icon="['fas', 'trash']" style="font-size:50px" @click="removeImageC(file.address,index)"/>
                     </h6>
                 </div>
-                <img :src="'https://localhost:8808/userImage/'+file.address">
+                <img :src="'https://carinapp.herokuapp.com/userImage/'+file.address">
             </div>
         </div><br>
         <button class="buttonR" @click="moreImages" v-if="files[0]!==undefined">More</button>
@@ -31,7 +31,7 @@ axios.defaults.withCredentials = true
             var vueThis = this
             async function go() {
                 try {
-                    const wes = await axios('https://localhost:8808/userData/0')
+                    const wes = await axios('https://carinapp.herokuapp.com/userData/0')
                     vueThis.files = wes.data.result
                 }catch (e) {
                     console.error(e); 
@@ -42,7 +42,7 @@ axios.defaults.withCredentials = true
         methods:{
             removeImageC(fileAddress,index){
                 var vueThis = this
-                axios.delete('https://localhost:8808/removeImage/'+fileAddress).then(function(res){
+                axios.delete('https://carinapp.herokuapp.com/removeImage/'+fileAddress).then(function(res){
                     document.getElementsByClassName("imgDiv")[index].className+=" deleteAnimate"
                     setTimeout(function (){
                         vueThis.files.splice(index, 1)
@@ -51,7 +51,7 @@ axios.defaults.withCredentials = true
             },
             moreImages(){
                 var vueThis = this
-                axios('https://localhost:8808/userData/'+vueThis.files.length).then((res)=>{
+                axios('https://carinapp.herokuapp.com/userData/'+vueThis.files.length).then((res)=>{
                     vueThis.files = vueThis.files.concat(res.data.result)
                 })
             }
