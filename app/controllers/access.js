@@ -67,7 +67,7 @@ exports.facebookC = (req,res)=>{
     console.log('req.user is exit')
         access.findOrCreate(req.user,()=>{
             console.log('model callback')
-            fs.mkdirSync("./usersFiles/"+req.user.id+"-files")
+            // fs.mkdirSync("./usersFiles/"+req.user.id+"-files")
         })
         res.cookie('token',req.user.accessToken)
         res.cookie('typeAccess',"facebook")
