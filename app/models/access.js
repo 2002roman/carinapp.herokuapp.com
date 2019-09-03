@@ -9,9 +9,9 @@ class access{
 		//con.connect()
 		var query = "SELECT * FROM users WHERE typeAccess='local' and uniqueData='"+username+"'"
 		con.query(query,(err,res)=>{
-			// if(res.rowCount!==0) return successCallback(res[0].password)
-			// else failedCallback()
-			console.log(res,err)
+			if(res.rowCount!==0) return successCallback(res[0].password)
+			else failedCallback()
+			//console.log(res,err)
 		})
 		con.end()
 	}
