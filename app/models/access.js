@@ -37,25 +37,21 @@ class access{
 	findOrCreate(user,callback){
 		// const con = require('mysql').createConnection(config.mysqlCon)
 		// con.connect()
-        console.log('model facebook start')
 		const con = new Pool(config.pgCon);
 		var query = "SELECT * FROM users WHERE typeAccess='facebook' and uniqueData='"+user.id+"'"
 		con.query(query,(err,result)=>{
-        	console.log('res:',result)
-        	console.log('err:',err)
-        	console.log('query:',query)
 			if(result.rowCount==0){
 				query = "INSERT INTO users(uniqueData, name, token,typeAccess) VALUES ('"+user.id+"','"+user.displayName+"','"+user.accessToken+"','facebook')"
 				con.query(query)
-        		console.log('user undefined from db')
-        		console.log('query:',query)
-
 				// con.query("CREATE TABLE `"+user.id+"-files` (name VARCHAR(255), address VARCHAR(255))")
 				callback()
 				con.end()
+				console.log('query:',query)
 			}else{
-				con.query("UPDATE users SET token='"+user.accessToken+"' WHERE uniqueData='"+user.id+"' and typeAccess='facebook'")
+				query = "UPDATE users SET token='"+user.accessToken+"' WHERE uniqueData='"+user.id+"' and typeAccess='facebook'"
+				con.query(query)
 				con.end()
+				console.log('query:',query)
 			}
 		})
 	}

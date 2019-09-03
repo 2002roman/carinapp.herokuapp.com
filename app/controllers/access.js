@@ -62,18 +62,16 @@ exports.regin = (username,password,done)=>{
 }
 
 exports.facebookC = (req,res)=>{
-    console.log('its a facebook controller');
     if(req.user) {
     console.log('req.user is exit')
         access.findOrCreate(req.user,()=>{
-            console.log('model callback')
+            // console.log('model callback')
             // fs.mkdirSync("./usersFiles/"+req.user.id+"-files")
         })
         res.cookie('token',req.user.accessToken)
         res.cookie('typeAccess',"facebook")
     }else{
         res.redirect(config.authenticationFailedRedirect)
-        console.log('req.user is empty')
     }
     res.redirect(config.authenticationSuccessRedirect)
 }
