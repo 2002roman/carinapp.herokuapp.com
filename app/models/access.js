@@ -7,7 +7,7 @@ class access{
 		// const con = require('mysql').createConnection(config.mysqlCon)
 		const con = new Pool(config.pgCon);
 		//con.connect()
-		var query = "SELECT * FROM `userslocal` WHERE username='"+username+"'"
+		var query = "SELECT * FROM `users` WHERE type='local' and username='"+username+"'"
 		con.query(query,(err,res)=>{
 			if(res[0]!==undefined) return successCallback(res[0].password)
 			else failedCallback()
@@ -18,7 +18,7 @@ class access{
 		// const con = require('mysql').createConnection(config.mysqlCon)
 		// con.connect()
 		const con = new Pool(config.pgCon);
-		var query = "SELECT * FROM `userslocal` WHERE username='"+username+"'"
+		var query = "SELECT * FROM `users` WHERE type='local' username='"+username+"'"
 		con.query(query,(err,res)=>{
 			callback(res[0]!==undefined)
 		}) 
@@ -28,9 +28,9 @@ class access{
 		// const con = require('mysql').createConnection(config.mysqlCon)
 		// con.connect()
 		const con = new Pool(config.pgCon);
-		var query = "INSERT INTO `userslocal`(`username`, `password`, `accesstoken`) VALUES ('"+username+"','"+hash+"','"+token+"')"
+		var query = "INSERT INTO `users`(`uniqueData`, `password`, `token`,`typeAccess`,`typeAccess`) VALUES ('"+username+"','"+hash+"','"+token+"','local')"
 		con.query(query)
-		con.query("CREATE TABLE `"+username+"-files` (name VARCHAR(255), address VARCHAR(255))")
+		// con.query("CREATE TABLE `"+username+"-files` (name VARCHAR(255), address VARCHAR(255))")
 		con.end()
 		callback(token)
 	}

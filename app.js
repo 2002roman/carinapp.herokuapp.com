@@ -30,7 +30,9 @@ app.get('/test',function(req,res){
 	res.send('hello');
 	console.log('okokokokokokok')
 })
-
+app.get('/public/:folderN/:fileN',(req,res)=>{
+    res.sendFile(__dirname+'/public/'+req.params.folderN+'/'+req.params.fileN)
+})
 require('./config/routes.js')(app, passport)
 
 var port = process.env.PORT || 3000;

@@ -28,16 +28,16 @@ module.exports = function (app, passport) {
             }
         }
     )
-    // app.get("/verify",(req,res)=>{
-    //     if(req.cookies.token == undefined){
-    //         res.send(false)
-    //     }else res.send(true)
-    // })
-    // app.get("/logout",(req,res)=>{
-    //     res.clearCookie('token')
-    //     res.clearCookie('typeAccess')
-    //     res.send(true)
-    // })
+    app.get("/verify",(req,res)=>{
+        if(req.cookies.token == undefined){
+            res.send(false)
+        }else res.send(true)
+    })
+    app.get("/logout",(req,res)=>{
+        res.clearCookie('token')
+        res.clearCookie('typeAccess')
+        res.send(true)
+    })
     app.get('/facebook',passport.authenticate('facebook'))
     app.get("/facebook/callback",passport.authenticate('facebook',{failureRedirect: '/faclogin' }),access.facebookC)
  //    app.get("/userData/:start/",user.getUserImages)
