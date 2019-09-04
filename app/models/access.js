@@ -41,7 +41,7 @@ class access{
 				con.query(query,function(err,res){
 					console.log(err,res)
 				})
-				// console.log(query,values)
+				console.log(query)
 				con.end()
 				callback()
 			}else{
