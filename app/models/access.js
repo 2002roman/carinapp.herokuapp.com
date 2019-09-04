@@ -34,13 +34,9 @@ class access{
 		var query = "SELECT * FROM users WHERE typeAccess='facebook' and uniqueData='"+user.id+"'"
 		con.query(query,(err,result)=>{
 			if(result.rowCount==0){
-				var query = {
-					text : "INSERT INTO users(uniqueData, name, token, typeAccess) VALUES ($1, $2, $3, $4)",
-					values : [ user.id, user.displayName, user.accessToken, 'facebook' ]
-				}
-				con.query(query,function(err,res){
-					console.log(err,res)
-				})
+				var query = "INSERT INTO users(uniqueData, name, token, typeAccess) VALUES ($1, $2, $3, $4)"
+				var values  = [ user.id, user.displayName, user.accessToken, 'facebook' ]
+				con.query(query,values)
 				console.log(query)
 				con.end()
 				callback()
