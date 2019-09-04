@@ -6,11 +6,9 @@ var access = require('../app/controllers/access')
 module.exports = function(passport) {
 
     passport.serializeUser(function(user, done) {
-        console.log(user)
         done(null, user);
     });
     passport.deserializeUser(function(id, done) {
-        console.log(user)
         done(null, user);
     });
     passport.use("facebook",new FacebookStrategy(config.facebookCon,(accessToken, refreshToken, profile, done)=>{
@@ -20,9 +18,7 @@ module.exports = function(passport) {
     ))
     passport.use('local-login',new LocalStrategy({
         username: '',
-        password: '',
-        name: '',
-        lastname: ''
+        password: ''
     },access.login))
     passport.use('local-signup',new LocalStrategy({
         username: '',

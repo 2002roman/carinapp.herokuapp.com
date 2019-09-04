@@ -40,25 +40,24 @@ exports.login = (username,password,done)=>{
     })
 }
 
-exports.regin = (username,password,name,lastname,done)=>{
-    console.log(username,password,name,lastname,done)
-    // access.checkUser(username,(res)=>{
-    //     if(res){
-    //         done(null,{
-    //             statusInQuery: false,
-    //             err:"Username busy"
-    //         })
-    //     }else{
-    //         generateHash(password,(err,hash)=>{
-    //             access.signupUser(username,getUniqueAccessTokenJWT(username),hash,name,lastname,(token)=>{
-    //                 done(null,{
-    //                     statusInQuery: true,
-    //                     token
-    //                 })
-    //             })
-    //         })
-    //     }
-    // })
+exports.regin = (username,password,done)=>{
+    access.checkUser(username,(res)=>{
+        if(res){
+            done(null,{
+                statusInQuery: false,
+                err:"Username busy"
+            })
+        }else{
+            generateHash(password,(err,hash)=>{
+                access.signupUser(username,getUniqueAccessTokenJWT(username),hash,(token)=>{
+                    done(null,{
+                        statusInQuery: true,
+                        token
+                    })
+                })
+            })
+        }
+    })
 }
 
 exports.facebookC = (req,res)=>{
