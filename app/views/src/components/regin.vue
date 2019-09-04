@@ -23,10 +23,15 @@
                       type: "password",
                       label: "Password"
                   },
-                   {
+                  {
                       name: "name",
                       type: "text",
-                      label: "Name Lastname"
+                      label: "Name"
+                  },
+                  {
+                      name: "lastname",
+                      type: "text",
+                      label: "Lastname"
                   }
               ],
               sendButtonValue: "Reg In",
@@ -45,6 +50,10 @@
                   },
                   {
                       name:"name",
+                      model:""
+                  },
+                  {
+                      name:"lastname",
                       model:""
                   }
               ]

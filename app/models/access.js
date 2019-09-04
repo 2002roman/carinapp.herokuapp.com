@@ -21,10 +21,10 @@ class access{
 		}) 
 		con.end()
 	}
-	signupUser(username,token,hash,callback){
+	signupUser(username,token,hash,name,lastname,callback){
 		const con = new Pool(config.pgCon);
-		var query = "INSERT INTO users(uniqueData, password, token,typeAccess) VALUES ($1, $2, $3, $4)"
-		var values = [ username, hash, token, 'local' ];
+		var query = "INSERT INTO users(uniqueData, password, token, name, lastname,typeAccess) VALUES ($1, $2, $3, $4, $5, $6)"
+		var values = [ username, hash, token, name, lastname, 'local' ];
 		con.query(query,values)
 		con.end()
 		callback(token)

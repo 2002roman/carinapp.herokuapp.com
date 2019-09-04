@@ -40,20 +40,16 @@ exports.login = (username,password,done)=>{
     })
 }
 
-exports.regin = (username,password,done)=>{
+exports.regin = (username,password,name,lastname,done)=>{
     access.checkUser(username,(res)=>{
-        console.log(res)
         if(res){
-        console.log('res is exit')
             done(null,{
                 statusInQuery: false,
                 err:"Username busy"
             })
         }else{
-        console.log('res is empty')
             generateHash(password,(err,hash)=>{
-                access.signupUser(username,getUniqueAccessTokenJWT(username),hash,(token)=>{
-                    // fs.mkdirSync("./usersFiles/"+username+"-files")
+                access.signupUser(username,getUniqueAccessTokenJWT(username),hash,name,lastname,(token)=>{
                     done(null,{
                         statusInQuery: true,
                         token
@@ -66,11 +62,7 @@ exports.regin = (username,password,done)=>{
 
 exports.facebookC = (req,res)=>{
     if(req.user) {
-    console.log('req.user is exit')
-        access.findOrCreate(req.user,()=>{
-            // console.log('model callback')
-            // fs.mkdirSync("./usersFiles/"+req.user.id+"-files")
-        })
+        access.findOrCreate(req.user,()=>{})
         res.cookie('token',req.user.accessToken)
         res.cookie('typeAccess',"facebook")
     }else{
