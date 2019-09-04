@@ -50,7 +50,7 @@ class user{
 		})
 	}
 	projects(cookies,callback){
-		this.getUserUniqueDataWithToken(cookies.type,cookies.token,(uniqueData)=>{
+		this.getUserUniqueDataWithToken(cookies.typeAccess,cookies.token,(uniqueData)=>{
 			const con = new Pool(config.pgCon);
 			var query = "SELECT * FROM projects Where uniqueDataOfUser='"+uniqueData+"'"
 			con.query(query,function(err,result){
