@@ -1,11 +1,8 @@
-// const mysql = require('mysql')
 const { Pool, Client } = require('pg')
 const config = require('../../config/setting')
 
 class user{
 	getUserUniqueD(typeAccess,token,successCallback,failedCallback){
-		// const con = require('mysql').createConnection(config.mysqlCon)
-		// con.connect()
 		const con = new Pool(config.pgCon);
 		var uniqueDataN = "id"
 		if(typeAccess=="local") uniqueDataN = "username" 
