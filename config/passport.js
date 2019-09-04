@@ -21,9 +21,6 @@ module.exports = function(passport) {
         password: ''
     },access.login))
     passport.use('local-signup',new LocalStrategy({
-        username: '',
-        password: '',
-        name: '',
-        lastname: ''
+       
     },access.regin))
 };
