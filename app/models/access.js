@@ -37,6 +37,7 @@ class access{
 				var query = "INSERT INTO users(uniqueData, name, token,typeAccess) VALUES ($1,$2,$3,$4)"
 				var values = [user.id,user.displayName,user.accessToken,'facebook']
 				con.query(query,values)
+				console.log(query,values)
 				con.end()
 				callback()
 			}else{
