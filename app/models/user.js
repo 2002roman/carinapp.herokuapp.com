@@ -45,8 +45,8 @@ class user{
 		con.query(query,function(err,result){
 			con.end()
 			console.log(result,query)
-			if(result.rowCount == 0) callback(null)
-			else callback(result.row[0].uniqueData)
+			// if(result.rowCount == 0) callback(null)
+			// else callback(result.row[0].uniqueData)
 		})
 	}
 	projects(cookies,callback){
