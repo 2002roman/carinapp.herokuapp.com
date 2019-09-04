@@ -63,7 +63,6 @@ axios.defaults.withCredentials = true
             axios("https://carinapp.herokuapp.com/verify").then(function(res){
                 if(res.data==true){
                     vueThis.$router.push('/user/profile')
-                    console.log("")
                 }
             })
         }

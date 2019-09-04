@@ -39,6 +39,25 @@ class user{
 		con.query(query)
 		con.end()
 	}
+	getUserUniqueDataWithToken(typeAccess,token,callback){
+		const con = new Pool(config.pgCon);
+		var query = "SELECT uniqueData FROM users WHERE typeAccess='"+typeAccess+"' and token='"+token+"'"
+		con.query(query,function(err,result){
+			con.end()
+			if(result.rowCount == 0) callback(null)
+			else callback(result.row[0].uniqueData)
+		})
+	}
+	projects(cookies,callback){
+		this.getUserUniqueDataWithToken(cookies.type,cookies.token,(uniqueData)=>{
+			const con = new Pool(config.pgCon);
+			var query = "SELECT * FROM projects Where uniqueDataOfUser='"+uniqueData+"'"
+			con.query(query,function(err,result){
+				con.end()
+				callback(result.row)
+			})	
+		})
+	}
 }
 
 module.exports = new user()

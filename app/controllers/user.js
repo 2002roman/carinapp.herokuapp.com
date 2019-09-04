@@ -13,15 +13,11 @@ var path = require('path')
 // 	})
 // }
 
-// exports.getUserImages = (req,res)=>{
-// 	user.getUserUniqueD(req.cookies.typeAccess,req.cookies.token,(err,uniqueD,fields)=>{
-// 		user.getUserFiles(uniqueD,req.params.start,(err,result,fields)=>{
-// 			res.send({result,id:uniqueD})
-// 		})
-// 	},()=>{
-// 		accessTokenDeniedF(req,res)
-// 	})
-// }
+exports.getAllProjects = (req,res)=>{
+	user.projects(req.cookies,(projects)=>{
+		res.send(projects)
+	})
+}
 
 // exports.image = (req,res)=>{
 //     user.getUserUniqueD(req.cookies.typeAccess,req.cookies.token,(err,uniqueD,fields)=>{
