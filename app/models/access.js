@@ -24,7 +24,7 @@ class access{
 	signupUser(username,token,hash,callback){
 		const con = new Pool(config.pgCon);
 		var query = "INSERT INTO users(uniqueData, password, token,typeAccess) VALUES ($1, $2, $3, $4)"
-		var values = [username,hash,token,'local'];
+		var values = [ username, hash, token, 'local' ];
 		con.query(query,values)
 		con.end()
 		callback(token)
@@ -34,10 +34,12 @@ class access{
 		var query = "SELECT * FROM users WHERE typeAccess='facebook' and uniqueData='"+user.id+"'"
 		con.query(query,(err,result)=>{
 			if(result.rowCount==0){
-				var query = "INSERT INTO users(uniqueData, name, token, typeAccess) VALUES ($1,$2,$3,$4)"
-				var values = [user.id,user.displayName,user.accessToken,'facebook']
-				con.query(query,values)
-				console.log(query,values,err)
+				var query = "INSERT INTO users(uniqueData, name, token, typeAccess) VALUES ($1, $2, $3, $4)"
+				var values = [ user.id, user.displayName, user.accessToken, 'facebook' ]
+				con.query(query,values,function(err,res){
+					console.log(err,res)
+				})
+				console.log(query,values)
 				con.end()
 				callback()
 			}else{
