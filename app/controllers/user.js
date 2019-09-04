@@ -14,7 +14,9 @@ var path = require('path')
 // }
 
 exports.getAllProjects = (req,res)=>{
+	console.log('getAllProjects rout')
 	user.projects(req.cookies,(projects)=>{
+		console.log('model callback,project',projects)
 		res.send(projects)
 	})
 }
