@@ -31,27 +31,24 @@ class access{
 	}
 	findOrCreate(user,callback){
 		const con = new Pool(config.pgCon);
+		var query = "SELECT * FROM users WHERE typeAccess='facebook' and uniqueData='"+user.id+"'"
+		con.query(query,(err,result)=>{
+			con.end();
+			if(result.rowCount==0){
+				const con = new Pool(config.pgCon);
 				var query = "INSERT INTO users(uniqueData, token, typeAccess) VALUES ($1, $2, $3)"
 				var values  = [ user.id, user.accessToken, 'facebook' ]
 				con.query(query,values)
 				console.log(query)
 				con.end()
 				callback()
-		// var query = "SELECT * FROM users WHERE typeAccess='facebook' and uniqueData='"+user.id+"'"
-		// con.query(query,(err,result)=>{
-		// 	if(result.rowCount==0){
-		// 		var query = "INSERT INTO users(uniqueData, token, typeAccess) VALUES ($1, $2, $3)"
-		// 		var values  = [ user.id, user.accessToken, 'facebook' ]
-		// 		con.query(query,values)
-		// 		console.log(query)
-		// 		con.end()
-		// 		callback()
-		// 	}else{
-		// 		var query = "UPDATE users SET token='"+user.accessToken+"' WHERE uniqueData='"+user.id+"' and typeAccess='facebook'"
-		// 		con.query(query)
-		// 		con.end()
-		// 	}
-		// })
+			}else{
+				const con = new Pool(config.pgCon);
+				var query = "UPDATE users SET token='"+user.accessToken+"' WHERE uniqueData='"+user.id+"' and typeAccess='facebook'"
+				con.query(query)
+				con.end()
+			}
+		})
 	}
 	updateAccessToken(username,token){
 		const con = new Pool(config.pgCon);
