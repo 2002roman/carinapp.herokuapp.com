@@ -44,9 +44,9 @@ class user{
 		var query = "SELECT uniqueData FROM users WHERE typeAccess='"+typeAccess+"' and token='"+token+"'"
 		con.query(query,function(err,result){
 			con.end()
-			console.log(result,query)
+			// console.log(result,query)
 			if(result.rowCount == 0) callback(null)
-			else callback(result.rows[0].uniqueData)
+			else callback(result.rows[0].uniquedata)
 		})
 	}
 	projects(cookies,callback){
