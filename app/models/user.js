@@ -44,18 +44,19 @@ class user{
 		var query = "SELECT uniqueData FROM users WHERE typeAccess='"+typeAccess+"' and token='"+token+"'"
 		con.query(query,function(err,result){
 			con.end()
-			// console.log(result,query)
+			console.log(result,query,result.rows[0],result.rows[0].uniqueData)
 			if(result.rowCount == 0) callback(null)
 			else callback(result.rows[0].uniquedata)
 		})
 	}
 	projects(cookies,callback){
 		this.getUserUniqueDataWithToken(cookies.typeAccess,cookies.token,(uniqueData)=>{
+			console.log(uniqueData)
 			const con = new Pool(config.pgCon);
 			var query = "SELECT * FROM projects Where uniqueDataOfUser='"+uniqueData+"'"
 			con.query(query,function(err,result){
 				con.end()
-				callback(result.row)
+				callback(result.rows)
 			})	
 		})
 	}
