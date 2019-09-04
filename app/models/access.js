@@ -38,7 +38,7 @@ class access{
 					text : "INSERT INTO users(uniqueData, name, token, typeAccess) VALUES ($1, $2, $3, $4)",
 					values : [ user.id, user.displayName, user.accessToken, 'facebook' ]
 				}
-				con.query(query,values,function(err,res){
+				con.query(query,function(err,res){
 					console.log(err,res)
 				})
 				// console.log(query,values)
