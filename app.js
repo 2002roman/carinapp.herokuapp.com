@@ -1,10 +1,10 @@
 const passport = require('passport')
 const fs = require('fs')
 const https = require('https')
-const http = require('http')
+// const http = require('http')
 const config = require('./config/setting.js')
-const app = require('express')()
-var io = require('socket.io')(http);
+// const app = require('express')()
+// var io = require('socket.io')(http);
 
 var app = require('express')();
 var server = require('http').Server(app);
