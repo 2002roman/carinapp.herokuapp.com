@@ -39,19 +39,6 @@ class user{
 			con.end()	
 		})
 	}
-	editProject(cookies,data,callback){
-		this.getUserUniqueDataWithToken(cookies.typeAccess,cookies.token,(uniqueData)=>{
-			const con = new Pool(config.pgCon)
-			var dataJson = JSON.stringify(data)
-			var query = "UPDATE projects set "
-			for (var property of data) {
-				query += property.name+'='+property.model+' ,'
-			}
-			console.log(query)
-			con.query(query)
-			con.end()	
-		})
-	}
 }
 
 module.exports = new user()

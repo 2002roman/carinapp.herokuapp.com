@@ -17,9 +17,3 @@ exports.createProject = (req,res)=>{
 		res.send(done)
 	})
 }
-
-exports.editProject = (req,res)=>{
-	user.editProject(req.cookies,req.body,(done)=>{
-		res.send(done)
-	})
-}

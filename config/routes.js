@@ -43,5 +43,4 @@ module.exports = function (app, passport) {
     app.get("/facebook/callback",passport.authenticate('facebook',{failureRedirect: '/faclogin' }),access.facebookC)
     app.get('/user/projects',user.getAllProjects)
     app.post('/user/createProject',user.createProject)
-    app.post('/user/editProject',user.editProject)
 }
