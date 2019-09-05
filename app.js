@@ -3,6 +3,7 @@ const fs = require('fs')
 const config = require('./config/setting.js')
 const serveStatic = require("serve-static")
 var app = require('express')()
+// const path = require()
 var server = require('http').Server(app)
 var io = require('socket.io')(server)
 
@@ -11,7 +12,7 @@ require('./config/passport')(passport)
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.use(serveStatic(path.join(__dirname, 'app/views/dist')));
+app.use(serveStatic(__dirname+'app/views/dist'));
 app.use(passport.initialize());
 app.use(passport.session())
 app.use(require('morgan')('dev'))
