@@ -11,7 +11,8 @@ var io = require('socket.io')(server)
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(serveStatic(path.join(__dirname, '/app/views/dist')));
+// app.use(serveStatic(path.join(__dirname, '/app/views/dist')));
+app.use(express.static(__dirname + '/public'));
 
 // app.use(serveStatic(path(__dirname,'app/views/dist')));
 // app.use(passport.initialize());
@@ -28,9 +29,9 @@ app.all('*',(req,res,next)=>{
 
 // require('./config/routes.js')(app, passport)
 
-app.get('/public/:folderN/:fileN',(req,res)=>{
-    res.sendFile(__dirname+'/public/'+req.params.folderN+'/'+req.params.fileN)
-})
+// app.get('/public/:folderN/:fileN',(req,res)=>{
+//     res.sendFile(__dirname+'/public/'+req.params.folderN+'/'+req.params.fileN)
+// })
 
 io.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
