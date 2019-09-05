@@ -12,7 +12,7 @@ var io = require('socket.io')(server)
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 // app.use(serveStatic(path.join(__dirname, '/app/views/dist')));
-app.use(express.static(__dirname + '/public'));
+app.use(require('express').static(__dirname + '/public'));
 
 // app.use(serveStatic(path(__dirname,'app/views/dist')));
 // app.use(passport.initialize());
