@@ -62,7 +62,7 @@ class user{
 		this.getUserUniqueDataWithToken(cookies.typeAccess,cookies.token,(uniqueData)=>{
 			const con = new Pool(config.pgCon);
 			var query = "INSERT INTO project(uniqueDataOfUser, id, projectName, status, projectData, configuration) VALUES ($1, $2, $3, $4, $5, $6)"
-			var values = [ uniquedata, id, data.projectName, false, data ,{}];
+			var values = [ uniqueData, id, data.projectName, false, data ,{}];
 			con.query(query,values)
 			con.end()	
 		})
