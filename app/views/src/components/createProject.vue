@@ -2,9 +2,9 @@
   <div>
       <div class="row">
 <form class="col s12">
-  <div class="row" v-for="input in formCardOption.formOption">
+  <div class="row" v-for="(input,index) in formCardOption.formOption">
     <div class="input-field col s4">
-      <input v-bind:type="input.type" class="validate" v-bind:placeholder="input.label">
+      <input v-bind:type="input.type" class="validate" v-bind:placeholder="input.label" v-model="formCardOption.formModels[index].model">
     </div>
   </div>
   <a class="waves-effect waves-light btn-large" v-on:click='send'>Button</a>

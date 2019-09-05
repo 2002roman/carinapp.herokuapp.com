@@ -27,11 +27,11 @@ exports.createProject = (req,res)=>{
 		})
 		return
 	}
-	console.log(req.body)
-	// const id = crypto.randomBytes(16).toString("hex");
-	// user.createProject(req.cookies,req.body,id,(done)=>{
-	// 	res.send(done)
-	// })
+	// console.log(req.body)
+	const id = crypto.randomBytes(16).toString("hex");
+	user.createProject(req.cookies,req.body,id,(done)=>{
+		res.send(done)
+	})
 }
 // exports.image = (req,res)=>{
 //     user.getUserUniqueD(req.cookies.typeAccess,req.cookies.token,(err,uniqueD,fields)=>{
