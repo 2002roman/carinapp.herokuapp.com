@@ -63,7 +63,7 @@ class user{
 			const con = new Pool(config.pgCon)
 			var dataJson = JSON.stringify(data)
 			var query = "INSERT INTO projects(uniqueDataOfUser, id, projectName, status, projectData) VALUES ($1, $2, $3, $4, $5)"
-			var values = [ uniqueData, id, data.projectName, false, dataJson ];
+			var values = [ uniqueData, id, data.name, false, dataJson ];
 			con.query(query,values)
 			con.end()	
 		})
