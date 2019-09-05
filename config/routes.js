@@ -41,10 +41,7 @@ module.exports = function (app, passport) {
     })
     app.get('/facebook',passport.authenticate('facebook'))
     app.get("/facebook/callback",passport.authenticate('facebook',{failureRedirect: '/faclogin' }),access.facebookC)
- //    app.get("/userData/:start/",user.getUserImages)
- //    app.post("/upload",user.upload)
- //    app.delete("/removeImage/:fileAddress",user.removeImage)
-	// app.get("/userImage/:fileAddress",user.image)
     app.get('/user/projects',user.getAllProjects)
     app.post('/user/createProject',user.createProject)
+    app.post('/user/editProject',user.editProject)
 }

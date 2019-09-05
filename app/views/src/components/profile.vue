@@ -23,7 +23,7 @@
 
             <tr>
                <td v-for="project in projects">
-                <button v-bind:disabled="!project.status">View</button>
+                <button v-bind:disabled="!project.status" v-on:click="goView">View</button>
                 </td>
             </tr>
             
@@ -55,8 +55,11 @@ axios.defaults.withCredentials = true
         },
         methods:{
             goToCreateProject (){
-                console.log('ijjij')
                  this.$router.push('createProject')
+            },
+            goView (){
+                this.$router.go('https://carinapp.herokuapp.com/controlRobot')
+                //  this.$router.push('controlRobot')            
             }
         }
     }    

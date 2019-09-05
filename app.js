@@ -34,8 +34,8 @@ app.get('/public/:folderN/:fileN',(req,res)=>{
     res.sendFile(__dirname+'/public/'+req.params.folderN+'/'+req.params.fileN)
 })
 
-app.get('/controlRobot',(req,res)=>{
-    res.sendFile(__dirname+'/public/html/controllRobot.html')
+app.get('/controllRobot',(req,res)=>{
+    res.sendFile(__dirname+'/controllRobot/index.html')
 })
 
 
