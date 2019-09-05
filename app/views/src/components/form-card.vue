@@ -53,6 +53,12 @@ axios.defaults.withCredentials = true
                     }else{
                         vueThis.formCardOption.formModels[0].model=""
                         vueThis.formCardOption.formModels[1].model=""
+                        vueThis.formCardOption.formModels[2].model=""
+                        vueThis.formCardOption.formModels[3].model=""
+                        vueThis.formCardOption.formModels[4].model=""
+                        vueThis.formCardOption.formModels[5].model=""
+                        vueThis.formCardOption.formModels[6].model=""
+                        vueThis.formCardOption.formModels[7].model=""
                         vueThis.errorText = response.data
                     }
                 })

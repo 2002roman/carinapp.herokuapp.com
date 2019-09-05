@@ -46,4 +46,5 @@ module.exports = function (app, passport) {
  //    app.delete("/removeImage/:fileAddress",user.removeImage)
 	// app.get("/userImage/:fileAddress",user.image)
     app.get('/user/projects',user.getAllProjects)
+    app.post('/user/createProject',user.createProject)
 }

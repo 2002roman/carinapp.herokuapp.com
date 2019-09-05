@@ -6,6 +6,8 @@ import accessMenu from '@/components/accessMenu.vue'
 import profile from '@/components/profile.vue'
 import userMenu from '@/components/userMenu.vue'
 import upload from '@/components/upload.vue'
+import createProject from '@/components/createProject.vue'
+
 
 Vue.use(Router)
 
@@ -54,6 +56,11 @@ export default new Router({
           path: 'upload',
           name: 'upload',
           component: upload
+        },
+        {
+          path: 'createProject',
+          name: 'createProject',
+          component: createProject
         },
         {
           path: '*',

@@ -3,6 +3,7 @@ var uuidv1 = require('uuid/v1')
 var mime = require('mime')
 var fs = require('fs')
 var path = require('path')
+const crypto = require("crypto")
 
 // function accessTokenDeniedF(req,res){
 // 	res.clearCookie('token')
@@ -14,13 +15,23 @@ var path = require('path')
 // }
 
 exports.getAllProjects = (req,res)=>{
-	console.log('getAllProjects rout')
 	user.projects(req.cookies,(projects)=>{
-		console.log('model callback,project',projects)
 		res.send(projects)
 	})
 }
-
+exports.createProject = (req,res)=>{
+	if(req.body == {} || req.cookies == {}){
+		res.send({
+			status:'error',
+			message:'inj vor ban ayn che porceq krkin'
+		})
+		return
+	}
+	const id = crypto.randomBytes(16).toString("hex");
+	user.createProject(req.cookies,req.body,id,(done)=>{
+		res.send(done)
+	})
+}
 // exports.image = (req,res)=>{
 //     user.getUserUniqueD(req.cookies.typeAccess,req.cookies.token,(err,uniqueD,fields)=>{
 //     	res.sendFile(path.join(__dirname, '../../usersFiles/'+uniqueD+'-files/',req.params.fileAddress))

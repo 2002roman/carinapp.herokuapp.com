@@ -16,6 +16,9 @@ export default new Vuex.Store({
     logInOption (state, option) {
       state.loginOption = option
     },
+    projectOption (state, option) {
+      state.projectOption = option
+    },
     regInOption (state, option) {
       state.reginOption = option
     },
