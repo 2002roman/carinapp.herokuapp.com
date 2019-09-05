@@ -33,6 +33,12 @@ app.get('/test',function(req,res){
 app.get('/public/:folderN/:fileN',(req,res)=>{
     res.sendFile(__dirname+'/public/'+req.params.folderN+'/'+req.params.fileN)
 })
+
+app.get('/controlRobot',(req,res)=>{
+    res.sendFile(__dirname+'/public/html/controllRobot.html')
+})
+
+
 require('./config/routes.js')(app, passport)
 
 var port = process.env.PORT || 3000;
