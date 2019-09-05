@@ -6,6 +6,9 @@ const config = require('./config/setting.js')
 const app = require('express')()
 var io = require('socket.io')(http);
 
+var app = require('express')();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 // server = https.createServer({
 // 	cert : fs.readFileSync('config/https/certeficate.pem'),
 // 	key : fs.readFileSync('config/https/privatekey.pem')
@@ -49,6 +52,6 @@ io.on('connection', function (socket) {
 });
 
 var port = process.env.PORT || 3000;
-app.listen(port,()=>{
+server.listen(port,()=>{
 	console.log('Server started in port '+port)
 })
