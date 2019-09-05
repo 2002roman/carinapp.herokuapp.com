@@ -14,13 +14,13 @@ var io = require('socket.io')(server);
 // 	key : fs.readFileSync('config/https/privatekey.pem')
 // }, app)
 
-// require('./config/passport')(passport)
+require('./config/passport')(passport)
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-// app.use(passport.initialize());
-// app.use(passport.session())
+app.use(passport.initialize());
+app.use(passport.session())
 app.use(require('morgan')('dev'))
 app.use(require('cookie-parser')())
 app.use(require('body-parser').urlencoded({limit : '500mb', extended: false }))
@@ -30,19 +30,19 @@ app.all('*',(req,res,next)=>{
 	res.append('Access-Control-Allow-Headers', ['Origin, X-Requested-With, Content-Type, Accept'])
 	next()
 })
-// app.get('/test',function(req,res){
-// 	res.send('hello');
-// 	console.log('okokokokokokok')
-// })
-// app.get('/public/:folderN/:fileN',(req,res)=>{
-//     res.sendFile(__dirname+'/public/'+req.params.folderN+'/'+req.params.fileN)
-// })
+app.get('/test',function(req,res){
+	res.send('hello');
+	console.log('okokokokokokok')
+})
+app.get('/public/:folderN/:fileN',(req,res)=>{
+    res.sendFile(__dirname+'/public/'+req.params.folderN+'/'+req.params.fileN)
+})
 
 app.get('/controllRobot',(req,res)=>{
     res.sendFile(__dirname+'/index.html')
 })
 
-// require('./config/routes.js')(app, passport)
+require('./config/routes.js')(app, passport)
 
 io.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
