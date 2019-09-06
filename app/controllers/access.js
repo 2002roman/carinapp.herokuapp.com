@@ -70,3 +70,25 @@ exports.facebookC = (req,res)=>{
     }
     res.redirect(config.authenticationSuccessRedirect)
 }
+
+exports.authenticate = (req,res)=>{
+    if(req.user.statusInQuery){
+        res.cookie('token',req.user.token)
+        res.cookie('typeAccess','local')
+        res.send(true)
+    }else{
+        res.send(req.user.err)
+    }
+}
+
+exports.verify = (req,res)=>{
+    if(req.cookies.token == undefined){
+        res.send(false)
+    }else res.send(true)
+}
+
+exports.logout = (req,res)=>{
+    res.clearCookie('token')
+    res.clearCookie('typeAccess')
+    res.send(true)
+}
