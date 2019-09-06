@@ -30,7 +30,7 @@ exports.setStatus = (req,res)=>{
 	})
 }
 
-exports.setStatus = (req,res)=>{
+exports.deleteProject = (req,res)=>{
 	user.deleteProject(req.cookies,req.body,(done)=>{
 		res.send(done)
 	})
