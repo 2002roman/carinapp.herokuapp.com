@@ -26,7 +26,7 @@ app.all('*',(req,res,next)=>{
 	next()
 })
 
-serverApiRouter = express.Router('api');
+var serverApiRouter = require('express').Router('api');
 require('./config/routes.js')(serverApiRouter, passport)
 
 app.get('/public/:folderN/:fileN',(req,res)=>{
