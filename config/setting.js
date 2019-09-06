@@ -12,7 +12,7 @@ exports.facebookCon = {
 };
 exports.corsCon = {
 	'origin':['http://localhost:8080'],
-    'methods':['GET', 'HEAD', 'OPTIONS','POST','DELETE'],
+    'methods':['GET', 'HEAD', 'OPTIONS','POST','DELETE','PUT'],
     'credentials': true
 }
 exports.authenticationSuccessRedirect = "https://carinapp.herokuapp.com/";
