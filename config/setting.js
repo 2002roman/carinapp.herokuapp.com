@@ -8,7 +8,7 @@ exports.pgCon = {
 exports.facebookCon = {
     'clientID' : "2052181424999563",
     'clientSecret' : "4662a73147709bc214ee7af1e7c6e993",
-    'callbackURL' : "https://carinapp.herokuapp.com/facebook/callback"
+    'callbackURL' : "https://carinapp.herokuapp.com/api/facebook/callback"
 };
 exports.corsCon = {
 	'origin':['http://localhost:8080'],

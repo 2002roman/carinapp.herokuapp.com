@@ -8,13 +8,15 @@ var server = require('http').Server(app)
 var io = require('socket.io')(server)
 require('express-group-routes')
 
+//passport.js
 require('./config/passport')(passport)
+
+//vue.js front
+app.use(serveStatic(path.join(__dirname, '/dist')));
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(serveStatic(path.join(__dirname, '/dist')));
 
-// app.use(serveStatic(path(__dirname,'app/views/dist')));
 app.use(passport.initialize());
 app.use(passport.session())
 app.use(require('morgan')('dev'))
@@ -27,20 +29,18 @@ app.all('*',(req,res,next)=>{
 	next()
 })
 
+//API rout
 var serverApiRouter = require('express').Router();
 require('./config/routes.js')(serverApiRouter, passport)
-
 app.use('/api',serverApiRouter)
+
+//socket.io
+require('./config/socketIo.js')(io)
+
+//public folder for front
 app.get('/public/:folderN/:fileN',(req,res)=>{
     res.sendFile(__dirname+'/public/'+req.params.folderN+'/'+req.params.fileN)
 })
-
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-});
 
 var port = process.env.PORT || 3000;
 server.listen(port,()=>{
