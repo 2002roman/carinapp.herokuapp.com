@@ -55,7 +55,10 @@ class user{
 			var query = "UPDATE projects SET projectData="+dataJson+" Where uniqueDataOfUser='"+uniqueData+"' and id='"+data.id+"'"
 			con.query(query,function(err,result){
 				con.end()
-				callback(result.rows)
+				callback({
+					status:'done',
+					data:data.id
+				})
 			})	
 		})
 	}
