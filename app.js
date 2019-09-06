@@ -26,10 +26,11 @@ app.all('*',(req,res,next)=>{
 	res.append('Access-Control-Allow-Headers', ['Origin, X-Requested-With, Content-Type, Accept'])
 	next()
 })
-app.group('/api',(group)=>{
-	require('./config/routes.js')(group, passport)
-})
 
+var serverApiRouter = require('express').Router();
+require('./config/routes.js')(serverApiRouter, passport)
+
+app.use('/api',serverApiRouter)
 app.get('/public/:folderN/:fileN',(req,res)=>{
     res.sendFile(__dirname+'/public/'+req.params.folderN+'/'+req.params.fileN)
 })
