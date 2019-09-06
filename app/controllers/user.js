@@ -17,3 +17,21 @@ exports.createProject = (req,res)=>{
 		res.send(done)
 	})
 }
+
+exports.editProject = (req,res)=>{
+	user.editProject(req.cookies,req.body,(done)=>{
+		res.send(done)
+	})
+}
+
+exports.setStatus = (req,res)=>{
+	user.setStatus(req.cookies,req.body,(done)=>{
+		res.send(done)
+	})
+}
+
+exports.setStatus = (req,res)=>{
+	user.deleteProject(req.cookies,req.body,(done)=>{
+		res.send(done)
+	})
+}
