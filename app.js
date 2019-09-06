@@ -13,7 +13,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(serveStatic(path.join(__dirname, '/dist')));
 
-app.use(serveStatic(path(__dirname,'app/views/dist')));
+// app.use(serveStatic(path(__dirname,'app/views/dist')));
 app.use(passport.initialize());
 app.use(passport.session())
 app.use(require('morgan')('dev'))
