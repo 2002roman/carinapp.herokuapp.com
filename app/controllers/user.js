@@ -31,8 +31,7 @@ exports.setStatus = (req,res)=>{
 }
 
 exports.deleteProject = (req,res)=>{
-	console.log('req.body:',req.params.id)
-	user.deleteProject(req.cookies,req.body,(done)=>{
+	user.deleteProject(req.cookies,req.params,(done)=>{
 		res.send(done)
 	})
 }
