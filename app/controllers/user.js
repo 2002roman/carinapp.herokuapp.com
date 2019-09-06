@@ -26,7 +26,9 @@ exports.createProject = (req,res)=>{
 
 exports.downloadProject = (req,res)=>{
 	user.project(req.cookies,req.params.id,(project)=>{
-		 fs.writeFile(req.params.id+'---project.json',project.projectdata,()=>{
+		 fs.writeFile(req.params.id+'---project.json',project.projectdata,(err)=>{
+		 	console.log('err:',err)
+		 	console.log('data:',project.projectdata)
 		    res.download(require('path').join(__dirname, req.params.id+'---project.json'),req.params.id+'---project.json')
 		 })
 	})
