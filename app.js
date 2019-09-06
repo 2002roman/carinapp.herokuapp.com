@@ -7,16 +7,15 @@ const path = require('path')
 var server = require('http').Server(app)
 var io = require('socket.io')(server)
 
-// require('./config/passport')(passport)
+require('./config/passport')(passport)
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-// app.use(serveStatic(path.join(__dirname, '/app/views/dist')));
-app.use(require('express').static(__dirname + '/public'));
+app.use(serveStatic(path.join(__dirname, '/dist')));
 
-// app.use(serveStatic(path(__dirname,'app/views/dist')));
-// app.use(passport.initialize());
-// app.use(passport.session())
+app.use(serveStatic(path(__dirname,'app/views/dist')));
+app.use(passport.initialize());
+app.use(passport.session())
 app.use(require('morgan')('dev'))
 app.use(require('cookie-parser')())
 app.use(require('body-parser').urlencoded({limit : '500mb', extended: false }))
@@ -27,11 +26,11 @@ app.all('*',(req,res,next)=>{
 	next()
 })
 
-// require('./config/routes.js')(app, passport)
+require('./config/routes.js')(app, passport)
 
-// app.get('/public/:folderN/:fileN',(req,res)=>{
-//     res.sendFile(__dirname+'/public/'+req.params.folderN+'/'+req.params.fileN)
-// })
+app.get('/public/:folderN/:fileN',(req,res)=>{
+    res.sendFile(__dirname+'/public/'+req.params.folderN+'/'+req.params.fileN)
+})
 
 io.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
