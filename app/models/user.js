@@ -76,6 +76,30 @@ class user{
 			con.end()
 		})
 	}
+	setStatus(cookies,data,callback){
+		this.getUserUniqueDataWithToken(cookies.typeAccess,cookies.token,(uniqueData,err)=>{
+			if(uniqueData==null){
+				callback(err)
+				return
+			}
+			const con = new Pool(config.pgCon);
+			var query = "UPDATE projects SET status='"+data.status+"' WHERE uniqueDataOfUser='"+uniqueData+"' and id='"+data.id+"'"
+			con.query(query,(err,res)=>{
+				if(err){
+					callback({
+						status:'error',
+						error:err
+					})
+				}else{
+					callback({
+						status:'done',
+						data:data.id
+					})
+				}
+			})
+			con.end()
+		})
+	}
 }
 
 module.exports = new user()
