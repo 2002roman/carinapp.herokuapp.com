@@ -12,7 +12,7 @@ module.exports = function (app, passport) {
     app.post('/user/createProject',user.createProject)
     app.put('/user/editProject',user.editProject)
     app.put('/user/setStatus',user.setStatus)
-    app.delete('/user/deleteProject',user.deleteProject)
+    app.delete('/user/deleteProject/:id',user.deleteProject)
     
     app.get('/verify',access.verify)
     app.get('/logout',access.logout)
