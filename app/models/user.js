@@ -49,7 +49,8 @@ class user{
 			var query = "INSERT INTO projects(uniqueDataOfUser, id, projectName, status, projectData) VALUES ($1, $2, $3, $4, $5)"
 			var values = [ uniqueData, id, data[0].model, false, dataJson ];
 			con.query(query,values)
-			con.end()	
+			con.end()
+			callback({status:'done'})
 		})
 	}
 	deleteProject(cookies,data,callback){
