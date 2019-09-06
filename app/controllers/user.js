@@ -28,7 +28,7 @@ exports.downloadProject = (req,res)=>{
 	user.project(req.cookies,req.params.id,(project)=>{
 		fs.writeFile(req.params.id+'---project.json',JSON.stringify(project),(err)=>{
 	    	res.download(req.params.id+'---project.json',req.params.id+'---project.json')
-	    	fs.unlink(req.params.id+'---project.json',()=>{});
+	    	// fs.unlink(req.params.id+'---project.json',()=>{});
 		})
 	})
 }
