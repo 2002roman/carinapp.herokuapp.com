@@ -26,7 +26,8 @@ app.all('*',(req,res,next)=>{
 	next()
 })
 
-require('./config/routes.js')(app, passport)
+serverApiRouter = express.Router('api');
+require('./config/routes.js')(serverApiRouter, passport)
 
 app.get('/public/:folderN/:fileN',(req,res)=>{
     res.sendFile(__dirname+'/public/'+req.params.folderN+'/'+req.params.fileN)
