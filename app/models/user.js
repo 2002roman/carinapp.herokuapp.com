@@ -52,7 +52,7 @@ class user{
 			}
 			const con = new Pool(config.pgCon);
 			var dataJson = JSON.stringify(data.projectdata)
-			var query = "UPDATE projects SET projectData="+dataJson+" Where uniqueDataOfUser='"+uniqueData+"' and id='"+data.id+"'"
+			var query = "UPDATE projects SET projectData='"+dataJson+"' Where uniqueDataOfUser='"+uniqueData+"' and id='"+data.id+"'"
 			console.log(query)
 			con.query(query,function(err,result){
 				con.end()
