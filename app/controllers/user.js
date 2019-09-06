@@ -32,7 +32,7 @@ exports.downloadProject = (req,res)=>{
 		 	fs.readFile(req.params.id+'---project.json', function(err, data) {
 		    	console.log('err:',err)
 		    	console.log('data:',data)
-		    	res.download(require('path').join(__dirname, req.params.id+'---project.json'),req.params.id+'---project.json')
+		    	res.download(req.params.id+'---project.json',req.params.id+'---project.json')
 			})
 		})
 	})
