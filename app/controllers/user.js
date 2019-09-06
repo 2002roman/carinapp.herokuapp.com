@@ -18,9 +18,17 @@ exports.getProject = (req,res)=>{
 }
 
 exports.createProject = (req,res)=>{
-	const id = crypto.randomBytes(16).toString("hex");
+	const id = crypto.randomBytes(16).toString("hex")
 	user.createProject(req.cookies,req.body,id,(done)=>{
 		res.send(done)
+	})
+}
+
+exports.downloadProject = (req,res)=>{
+	user.project(req.cookies,req.params.id,(project)=>{
+		 fs.writeFile(req.params.id+'---project.json',project.projectdata,()=>{
+		    res.download(require('path').join(__dirname, req.params.id+'---project.json'),req.params.id+'---project.json')
+		 })
 	})
 }
 
