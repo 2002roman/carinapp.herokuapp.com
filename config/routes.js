@@ -9,6 +9,7 @@ module.exports = function (app, passport) {
     app.get('/facebook',passport.authenticate('facebook'))
     app.get('/facebook/callback',passport.authenticate('facebook',{}),access.facebookC)
     app.get('/user/projects',user.getAllProjects)
+    app.get('/user/project/:id',user.getProject)
     app.post('/user/createProject',user.createProject)
     app.put('/user/editProject',user.editProject)
     app.put('/user/setStatus',user.setStatus)

@@ -11,6 +11,12 @@ exports.getAllProjects = (req,res)=>{
 	})
 }
 
+exports.getProject = (req,res)=>{
+	user.project(req.cookies,req.params.id,(project)=>{
+		res.send(project)
+	})
+}
+
 exports.createProject = (req,res)=>{
 	const id = crypto.randomBytes(16).toString("hex");
 	user.createProject(req.cookies,req.body,id,(done)=>{

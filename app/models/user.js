@@ -30,6 +30,20 @@ class user{
 			})	
 		})
 	}
+	project(cookies,id,callback){
+		this.getUserUniqueDataWithToken(cookies.typeAccess,cookies.token,(uniqueData,err)=>{
+			if(uniqueData==null){
+				callback(err)
+				return
+			}
+			const con = new Pool(config.pgCon);
+			var query = "SELECT * FROM projects Where uniqueDataOfUser='"+uniqueData+"' and id='"+id+"'"
+			con.query(query,function(err,result){
+				con.end()
+				callback(result.rows)
+			})	
+		})
+	}
 	editProject(cookies,data,id,callback){
 		this.getUserUniqueDataWithToken(cookies.typeAccess,cookies.token,(uniqueData,err)=>{
 			if(uniqueData==null){
