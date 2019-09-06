@@ -25,10 +25,10 @@ exports.createProject = (req,res)=>{
 }
 
 exports.editProject = (req,res)=>{
-	console.log(req.body)
-	// user.editProject(req.cookies,req.body,(done)=>{
-	// 	res.send(done)
-	// })
+	// console.log(req.body)
+	user.editProject(req.cookies,req.body,(done)=>{
+		res.send(done)
+	})
 }
 
 exports.setStatus = (req,res)=>{

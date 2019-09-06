@@ -44,12 +44,19 @@ class user{
 			})	
 		})
 	}
-	editProject(cookies,data,id,callback){
+	editProject(cookies,data,callback){
 		this.getUserUniqueDataWithToken(cookies.typeAccess,cookies.token,(uniqueData,err)=>{
 			if(uniqueData==null){
 				callback(err)
 				return
-			}	
+			}
+			const con = new Pool(config.pgCon);
+			var dataJson = JSON.stringify(data.projectdata)
+			var query = "UPDATE projects SET projectData="+dataJson+" Where uniqueDataOfUser='"+uniqueData+"' and id='"+data.id+"'"
+			con.query(query,function(err,result){
+				con.end()
+				callback(result.rows)
+			})	
 		})
 	}
 	createProject(cookies,data,id,callback){
