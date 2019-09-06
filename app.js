@@ -6,6 +6,7 @@ var app = require('express')()
 const path = require('path')
 var server = require('http').Server(app)
 var io = require('socket.io')(server)
+require('express-group-routes')
 
 require('./config/passport')(passport)
 
@@ -25,9 +26,9 @@ app.all('*',(req,res,next)=>{
 	res.append('Access-Control-Allow-Headers', ['Origin, X-Requested-With, Content-Type, Accept'])
 	next()
 })
-
-var serverApiRouter = require('express').Router('/api');
-require('./config/routes.js')(serverApiRouter, passport)
+app.group('/api',(group)=>{
+	require('./config/routes.js')(group, passport)
+})
 
 app.get('/public/:folderN/:fileN',(req,res)=>{
     res.sendFile(__dirname+'/public/'+req.params.folderN+'/'+req.params.fileN)
