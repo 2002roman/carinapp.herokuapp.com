@@ -26,11 +26,15 @@ exports.createProject = (req,res)=>{
 
 exports.downloadProject = (req,res)=>{
 	user.project(req.cookies,req.params.id,(project)=>{
-		 fs.writeFile(req.params.id+'---project.json',project.projectdata,(err)=>{
+		fs.writeFile(req.params.id+'---project.json',JSON.stringify(project),(err)=>{
 		 	console.log('err:',err)
-		 	console.log('data:',project)
-		    res.download(require('path').join(__dirname, req.params.id+'---project.json'),req.params.id+'---project.json')
-		 })
+		 	console.log('data:',JSON.stringify(project))
+		 	fs.readFile(req.params.id+'---project.json', function(err, data) {
+		    	console.log('err:',err)
+		    	console.log('data:',data)
+		    	res.download(require('path').join(__dirname, req.params.id+'---project.json'),req.params.id+'---project.json')
+			})
+		})
 	})
 }
 
