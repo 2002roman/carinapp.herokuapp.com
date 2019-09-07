@@ -108,10 +108,10 @@ class user{
 		con.query(query,function(err,result){
 			con.end()
 			console.log('query: ',query)
-			// if(result.rowCount == 0){
-			// 	callback(null)
-			// }
-			// else callback(result.rows[0].id)
+			if(result.rowCount == 0){
+				callback(null)
+			}
+			else callback(result.rows[0].id)
 		})
 	}
 	setStatus(data,callback){	
