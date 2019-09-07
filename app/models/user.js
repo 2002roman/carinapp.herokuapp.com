@@ -102,26 +102,45 @@ class user{
 			con.end()
 		})
 	}
-	setStatus(data,callback){	
+	checkProject(uniqueData,id,callback){
 		const con = new Pool(config.pgCon);
-		var query = "UPDATE projects SET status='"+data.status+"' WHERE uniqueDataOfUser='"+data.uniqueDataOfUser+"' and id='"+data.id+"'"
-		console.log('data:',data)
-		console.log('query:',query)
-		con.query(query,(err,res)=>{
-			if(err){
+		var query = "SELECT id FROM projects WHERE uniquedata='"+uniqueData+"' and id='"+id+"'"
+		con.query(query,function(err,result){
+			con.end()
+			if(result.rowCount == 0){
+				callback(null)
+			}
+			else callback(result.rows[0].id)
+		})
+	}
+	setStatus(data,callback){	
+		this.checkProject(data.uniqueDataOfUser,data.id,(res)=>{
+			if(res == null){
 				callback({
 					status:'error',
-					error:err
+					error:'Project no a found'
 				})
 			}else{
-				callback({
-					status:'done',
-					data:data.id
+				const con = new Pool(config.pgCon);
+				var query = "UPDATE projects SET status='"+data.status+"' WHERE uniqueDataOfUser='"+data.uniqueDataOfUser+"' and id='"+data.id+"'"
+				con.query(query,(err,res)=>{
+					if(err){
+						callback({
+							status:'error',
+							error:err
+						})
+					}else{
+						callback({
+							status:'done',
+							data:data.id
+						})
+					}
 				})
+				con.end()
 			}
 		})
-		con.end()
 	}
+
 }
 
 module.exports = new user()
