@@ -11,6 +11,10 @@ module.exports = function (io) {
 				socket.emit('verifyRobotAndTurnOn_res',res)
 			})
 		});
+
+		socket.on('disconnect',(data)=>{
+			console.log('disconnected project:',data)
+		})
 	});
 
 }
