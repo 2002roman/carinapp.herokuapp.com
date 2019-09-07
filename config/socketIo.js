@@ -3,8 +3,10 @@ var user = require('../app/models/user.js')
 module.exports = function (io) {
 
 	io.on('connection', function (socket) {
-
+		socket.role = ''
+		socket.data = {}
 		socket.on('verifyRobotAndTurnOn', function (data) {
+			socket.role = 'robot'
 			data.status = true
 			console.log(data)
 			user.setStatus(data,(res)=>{
@@ -13,7 +15,7 @@ module.exports = function (io) {
 		});
 
 		socket.on('disconnect',(data)=>{
-			console.log('disconnected project:',data)
+			console.log('disconnected :',socket.role)
 		})
 	});
 
