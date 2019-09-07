@@ -107,10 +107,11 @@ class user{
 		var query = "SELECT id FROM projects WHERE uniquedata='"+uniqueData+"' and id='"+id+"'"
 		con.query(query,function(err,result){
 			con.end()
-			if(result.rowCount == 0){
-				callback(null)
-			}
-			else callback(result.rows[0].id)
+			console.log('query: ',query)
+			// if(result.rowCount == 0){
+			// 	callback(null)
+			// }
+			// else callback(result.rows[0].id)
 		})
 	}
 	setStatus(data,callback){	
