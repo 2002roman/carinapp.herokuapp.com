@@ -1,10 +1,15 @@
+var user = require('../app/models/user.js')
+
 module.exports = function (io) {
 
 	io.on('connection', function (socket) {
-	  socket.emit('news', { hello: 'world' });
-	  socket.on('my other event', function (data) {
-	    console.log(data);
-	  });
+
+		socket.on('verifyRobotAndTurnOn', function (data) {
+			console.log(data)
+			user.setStatus(data,(res)=>{
+				socket.emit('verifyRobotAndTurnOn_res',res)
+			})
+		});
 	});
 
 }
