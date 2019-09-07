@@ -29,6 +29,7 @@ exports.downloadProject = (req,res)=>{
 		fs.writeFile(req.params.id+'---project.json',JSON.stringify(project),(err)=>{
 	    	res.download(req.params.id+'---project.json','projectData.json',function(errorDownoad){
 	    		fs.unlink(req.params.id+'---project.json',()=>{});
+	    		console.log('end download')
 	    	})
 		})
 	})
