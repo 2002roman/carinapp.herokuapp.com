@@ -7,6 +7,7 @@ module.exports = function (io) {
 		socket.data = {}
 		socket.on('verifyRobotAndTurnOn', function (data) {
 			socket.role = 'robot'
+			socket.data = data
 			data.status = true
 			console.log(data)
 			user.setStatus(data,(res)=>{
@@ -16,6 +17,12 @@ module.exports = function (io) {
 
 		socket.on('disconnect',(data)=>{
 			console.log('disconnected :',socket.role)
+			if(socket.role == 'robot'){
+				data.status = false
+				user.setStatus(data,(res)=>{
+					if(res.status == 'error') console.log(res.error)
+				})
+			}
 		})
 	});
 
