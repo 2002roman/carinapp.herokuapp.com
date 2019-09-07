@@ -105,6 +105,8 @@ class user{
 	setStatus(data,callback){	
 		const con = new Pool(config.pgCon);
 		var query = "UPDATE projects SET status='"+data.status+"' WHERE uniqueDataOfUser='"+data.uniqueDataOfUser+"' and id='"+data.id+"'"
+		console.log('data:',data)
+		console.log('query:',query)
 		con.query(query,(err,res)=>{
 			if(err){
 				callback({
