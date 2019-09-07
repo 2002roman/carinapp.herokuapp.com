@@ -17,9 +17,10 @@ module.exports = function (io) {
 
 		socket.on('disconnect',(data)=>{
 			console.log('disconnected :',socket.role)
+			console.log('disconnected client data:',socket.data)
 			if(socket.role == 'robot'){
-				data.status = false
-				user.setStatus(data,(res)=>{
+				socket.data.status = false
+				user.setStatus(socket.data,(res)=>{
 					if(res.status == 'error') console.log(res.error)
 				})
 			}
