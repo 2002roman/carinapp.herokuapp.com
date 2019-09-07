@@ -28,8 +28,9 @@ exports.downloadProject = (req,res)=>{
 	user.project(req.cookies,req.params.id,(project)=>{
 		fs.writeFile(req.params.id+'---project.json',JSON.stringify(project),(err)=>{
 	    	res.download(req.params.id+'---project.json','projectData.json',function(errorDownoad){
-	    		fs.unlink(req.params.id+'---project.json',()=>{});
-	    		console.log('end download')
+	    		fs.unlink(req.params.id+'---project.json',()=>{
+	    			res.redirect('back')
+	    		});
 	    	})
 		})
 	})
