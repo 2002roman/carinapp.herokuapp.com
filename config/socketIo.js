@@ -5,6 +5,7 @@ module.exports = function (io) {
 	io.on('connection', function (socket) {
 
 		socket.on('verifyRobotAndTurnOn', function (data) {
+			data.status = true
 			console.log(data)
 			user.setStatus(data,(res)=>{
 				socket.emit('verifyRobotAndTurnOn_res',res)
