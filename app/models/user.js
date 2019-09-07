@@ -104,7 +104,7 @@ class user{
 	}
 	checkProject(uniqueData,id,callback){
 		const con = new Pool(config.pgCon);
-		var query = "SELECT id FROM projects WHERE uniquedata='"+uniqueData+"' and id='"+id+"'"
+		var query = "SELECT id FROM projects WHERE uniqueDataOfUser='"+uniqueData+"' and id='"+id+"'"
 		con.query(query,function(err,result){
 			con.end()
 			console.log('query: ',query)
