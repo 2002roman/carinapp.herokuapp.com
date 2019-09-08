@@ -127,7 +127,8 @@ class user{
 					error : ('Robot is already'+errorWord)
 				})
 			}else{
-				console.log(res,data)
+				console.log(res,data,String(data.status)==String(res.status))
+				console.log(String(data.status),String(res.status))
 				const con = new Pool(config.pgCon);
 				var query = "UPDATE projects SET status='"+data.status+"',token_robot='"+data.token+"' WHERE uniqueDataOfUser='"+data.uniqueDataOfUser+"' and id='"+data.id+"'"
 				con.query(query,(err,res)=>{
