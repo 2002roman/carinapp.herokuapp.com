@@ -122,7 +122,7 @@ class user{
 					error:'Project no a found'
 				})
 			}else if(res.token_robot!=='null' || res.token_robot!=='undefined'){
-				console.log('robot is already connected and her token is :',res)
+				console.log('robot is already connected and her token is :',res.token_robot)
 				callback({
 					status:'error',
 					error:'Robot is already connected'
