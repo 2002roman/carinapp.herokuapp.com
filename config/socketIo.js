@@ -25,6 +25,11 @@ module.exports = function (io) {
 				})
 			}
 		})
+
+		socket.on('test',(data)=>{
+			console.log('first date:',data)
+			console.log('sec date',Date.now())	
+		})
 	});
 
 }
