@@ -118,13 +118,14 @@ class user{
 		this.checkProject(data.uniqueDataOfUser,data.id,(res)=>{
 			if(res == null){
 				callback({
-					status:'error',
-					error:'Project no a found'
+					status : 'error',
+					error : 'Project not a found'
 				})
-			}else if(String(res.token_robot)!=='null' && String(res.token_robot)!=='undefined' && data.status==true){
+			}else if(data.status==res.status){
+				errorWord = (res.status)?'connected':'disconnected'
 				callback({
-					status:'error',
-					error:'Robot is already connected'
+					status : 'error',
+					error : ('Robot is already'+errorWord)
 				})
 			}else{
 				const con = new Pool(config.pgCon);
