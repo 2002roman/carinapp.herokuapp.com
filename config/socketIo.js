@@ -21,6 +21,7 @@ module.exports = function (io) {
 			console.log('disconnected client data:',socket.data)
 			if(socket.role == 'robot'){
 				socket.data.status = false
+				socket.data.token = null
 				user.setStatus(socket.data,(res)=>{
 					if(res.status == 'error') console.log(res.error)
 				})
