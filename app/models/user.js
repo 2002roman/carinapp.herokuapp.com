@@ -104,14 +104,14 @@ class user{
 	}
 	checkProject(uniqueData,id,callback){
 		const con = new Pool(config.pgCon);
-		var query = "SELECT id FROM projects WHERE uniqueDataOfUser='"+uniqueData+"' and id='"+id+"'"
+		var query = "SELECT token_user,token_robot,id FROM projects WHERE uniqueDataOfUser='"+uniqueData+"' and id='"+id+"'"
 		con.query(query,function(err,result){
 			con.end()
 			console.log('query: ',query)
 			if(result.rowCount == 0){
 				callback(null)
 			}
-			else callback(result.rows[0].id)
+			else callback(result.rows[0])
 		})
 	}
 	setStatus(data,callback){	
@@ -121,9 +121,14 @@ class user{
 					status:'error',
 					error:'Project no a found'
 				})
+			}else if(res.token_robot!==null){
+				callback({
+					status:'error',
+					error:'Robot is already connected'
+				})
 			}else{
 				const con = new Pool(config.pgCon);
-				var query = "UPDATE projects SET status='"+data.status+"' WHERE uniqueDataOfUser='"+data.uniqueDataOfUser+"' and id='"+data.id+"'"
+				var query = "UPDATE projects SET status='"+data.status+"',token_robot='"+data.token+"' WHERE uniqueDataOfUser='"+data.uniqueDataOfUser+"' and id='"+data.id+"'"
 				con.query(query,(err,res)=>{
 					if(err){
 						callback({

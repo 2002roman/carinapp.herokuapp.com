@@ -9,6 +9,7 @@ module.exports = function (io) {
 			socket.role = 'robot'
 			socket.data = data
 			data.status = true
+			data.token = socket.handshake.sessionID
 			console.log(data)
 			user.setStatus(data,(res)=>{
 				socket.emit('verifyRobotAndTurnOn_res',res)
@@ -26,11 +27,6 @@ module.exports = function (io) {
 			}
 		})
 
-		socket.on('test',(data)=>{
-			console.log('first date:',data)
-			console.log('sec date',Date.now())
-			console.log('sec:',Date.now()-data)
-		})
 	});
 
 }

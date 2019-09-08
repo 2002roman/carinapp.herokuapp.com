@@ -5,7 +5,9 @@ exports.migration = {
              projectName varchar(255),\
              status bool,\
              projectData json,\
-             configuration json\
+             configuration json,\
+             token_robot varchar(255),\
+             token_user varchar(255)\
         );',
     down :'Drop table projects;',
     refresh : 'Delete from projects'
