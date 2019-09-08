@@ -104,7 +104,7 @@ class user{
 	}
 	checkProject(uniqueData,id,callback){
 		const con = new Pool(config.pgCon);
-		var query = "SELECT token_user,token_robot,id FROM projects WHERE uniqueDataOfUser='"+uniqueData+"' and id='"+id+"'"
+		var query = "SELECT status,token_user,token_robot,id FROM projects WHERE uniqueDataOfUser='"+uniqueData+"' and id='"+id+"'"
 		con.query(query,function(err,result){
 			con.end()
 			if(result.rowCount == 0){
@@ -128,7 +128,7 @@ class user{
 				})
 			}else{
 				console.log(res,data,String(data.status)==String(res.status))
-				console.log(String(data.status),String(res.status))
+				console.log(data.status,res.status)
 				const con = new Pool(config.pgCon);
 				var query = "UPDATE projects SET status='"+data.status+"',token_robot='"+data.token+"' WHERE uniqueDataOfUser='"+data.uniqueDataOfUser+"' and id='"+data.id+"'"
 				con.query(query,(err,res)=>{
