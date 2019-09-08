@@ -121,7 +121,7 @@ class user{
 					error : 'Project not a found'
 				})
 			}else if(String(data.status)==String(res.status)){
-				errorWord = (res.status)?'connected':'disconnected'
+				var errorWord = (res.status)?'connected':'disconnected'
 				callback({
 					status : 'error',
 					error : ('Robot is already'+errorWord)
