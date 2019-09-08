@@ -9,7 +9,7 @@ module.exports = function (io) {
 			socket.role = 'robot'
 			socket.data = data
 			data.status = true
-			data.token = socket.handshake.sessionID
+			data.token = socket.io.engine.id
 			console.log(data)
 			user.setStatus(data,(res)=>{
 				socket.emit('verifyRobotAndTurnOn_res',res)
