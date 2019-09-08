@@ -121,7 +121,7 @@ class user{
 					status:'error',
 					error:'Project no a found'
 				})
-			}else if(String(res.token_robot)!=='null' || String(res.token_robot)!=='undefined'){
+			}else if(String(res.token_robot)!=='null' && String(res.token_robot)!=='undefined'){
 				console.log('robotelse:',String(res.token_robot),String(res.token_robot)!=='null',String(res.token_robot)!=='undefined')
 				callback({
 					status:'error',
