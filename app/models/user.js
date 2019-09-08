@@ -107,7 +107,6 @@ class user{
 		var query = "SELECT token_user,token_robot,id FROM projects WHERE uniqueDataOfUser='"+uniqueData+"' and id='"+id+"'"
 		con.query(query,function(err,result){
 			con.end()
-			console.log('query: ',query)
 			if(result.rowCount == 0){
 				callback(null)
 			}
@@ -121,13 +120,14 @@ class user{
 					status : 'error',
 					error : 'Project not a found'
 				})
-			}else if(data.status==res.status){
+			}else if(String(data.status)==String(res.status)){
 				errorWord = (res.status)?'connected':'disconnected'
 				callback({
 					status : 'error',
 					error : ('Robot is already'+errorWord)
 				})
 			}else{
+				console.log(res,data)
 				const con = new Pool(config.pgCon);
 				var query = "UPDATE projects SET status='"+data.status+"',token_robot='"+data.token+"' WHERE uniqueDataOfUser='"+data.uniqueDataOfUser+"' and id='"+data.id+"'"
 				con.query(query,(err,res)=>{
