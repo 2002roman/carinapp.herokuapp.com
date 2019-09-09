@@ -25,7 +25,7 @@ module.exports = function (io) {
 			// 	socket.emit('verifyUser_res',res)
 			// 	if(res.status=='done'){
 			// 		console.log('its a done',io.sockets.clients())
-					io.to(res.token_robot).emit('handshake',{id:socket.id});
+					io.to(socket.id).emit('handshake',{id:socket.id});
 			// 	}
 			// })
 		});
