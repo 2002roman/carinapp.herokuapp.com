@@ -2,7 +2,7 @@ var user = require('../app/models/user.js')
 
 module.exports = function (io) {
 
-	io.on('connection', function (socket) {
+	io.sockets.on('connection', function (socket) {
 		socket.role = ''
 		socket.data = {}
 
