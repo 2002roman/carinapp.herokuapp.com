@@ -21,9 +21,9 @@ module.exports = function (io) {
 			// data.status = true
 			// data.token = socket.id
 			console.log(data)
-			user.getRobotData(data,(res)=>{
-				socket.emit('verifyUser_res',res)
-			})
+			// user.getRobotData(data,(res)=>{
+			// 	socket.emit('verifyUser_res',res)
+			// })
 		});
 
 		socket.on('disconnect',(data)=>{
