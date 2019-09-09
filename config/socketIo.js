@@ -19,7 +19,7 @@ module.exports = function (io) {
 
 		socket.on('verifyUser', function (data) {
 			socket.role = 'user'
-			data.token = socket.id
+			// data.token = socket.id
 			console.log('verifyUser data:',data)
 			user.getRobotData(data,(res)=>{
 				socket.emit('verifyUser_res',res)
