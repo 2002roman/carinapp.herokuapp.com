@@ -23,11 +23,20 @@ module.exports = function (io) {
 			user.getRobotData(data,(res)=>{
 				socket.emit('verifyUser_res',res)
 				if(res.status=='done'){
-					console.log('its a done',io.sockets.clients())
+					socket.token_robot = res.token_robot
+					// console.log('its a done',io.sockets.clients())
 					io.to(res.token_robot).emit('handshake',{id:socket.id});
 				}
 			})
 		});
+
+		socket.on('setDirection',(data)=>{
+			console.log(data)
+			if(socket.role=='user'){
+				data.id = socket.id
+				io.to(socket.token_robot).emit('direction',data);
+			}
+		})
 
 		socket.on('disconnect',(data)=>{
 			console.log('disconnected :',socket.role)
