@@ -7,6 +7,9 @@ module.exports = function (io) {
 		socket.data = {}
 		console.log('Start connection')
 		socket.emit('test',socket.id)
+		socket.on('test',(res)=>{
+			console.log('test res:',res)
+		})
 		socket.on('verifyRobotAndTurnOn', function (data) {
 			socket.role = 'robot'
 			socket.data = data
