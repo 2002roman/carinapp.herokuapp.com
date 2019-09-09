@@ -119,6 +119,7 @@ class user{
 				callback(err)
 				return
 			}
+			const con = new Pool(config.pgCon);
 			var query = "SELECT token_robot FROM projects WHERE uniqueDataOfUser='"+uniqueData+"' and id='"+data.id+"'"
 			con.query(query,function(err,result){
 				con.end()
