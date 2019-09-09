@@ -128,6 +128,11 @@ class user{
 						status:'error',
 						error:'Project of this id undefined'
 					})
+				}else if(!result.rows[0].status){
+					callback({
+						status:'error',
+						error:'Robot is untill not connected'
+					})
 				}
 				else callback(result.rows[0])
 			})
