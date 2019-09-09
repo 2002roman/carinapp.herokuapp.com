@@ -18,16 +18,16 @@ module.exports = function (io) {
 		});
 
 		socket.on('verifyUser', function (data) {
-			//socket.role = 'user'
-			// data.token = socket.id
-			// console.log('verifyUser data:',data)
-			// user.getRobotData(data,(res)=>{
-			// 	socket.emit('verifyUser_res',res)
-			// 	if(res.status=='done'){
-			// 		console.log('its a done',io.sockets.clients())
-					io.to(socket.id).emit('verifyUser_res',{id:socket.id});
-			// 	}
-			// })
+			socket.role = 'user'
+			data.token = socket.id
+			console.log('verifyUser data:',data)
+			user.getRobotData(data,(res)=>{
+				socket.emit('verifyUser_res',res)
+				if(res.status=='done'){
+					console.log('its a done',io.sockets.clients())
+					io.to(res.token_robot).emit('handshake',{id:socket.id});
+				}
+			})
 		});
 
 		socket.on('disconnect',(data)=>{
