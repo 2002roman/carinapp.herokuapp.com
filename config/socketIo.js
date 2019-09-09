@@ -5,11 +5,7 @@ module.exports = function (io) {
 	io.on('connection', function (socket) {
 		socket.role = ''
 		socket.data = {}
-		console.log('Start connection')
-		socket.emit('test',socket.id)
-		socket.on('test',(res)=>{
-			console.log('test res:',res)
-		})
+		
 		socket.on('verifyRobotAndTurnOn', function (data) {
 			socket.role = 'robot'
 			socket.data = data
@@ -22,13 +18,11 @@ module.exports = function (io) {
 		});
 
 		socket.on('verifyUser', function (data) {
-			// socket.role = 'user'
-			// data.status = true
-			// data.token = socket.id
-			console.log(data)
-			// user.getRobotData(data,(res)=>{
-			// 	socket.emit('verifyUser_res',res)
-			// })
+			socket.role = 'user'
+			data.token = socket.id
+			user.getRobotData(data,(res)=>{
+				socket.emit('verifyUser_res',res)
+			})
 		});
 
 		socket.on('disconnect',(data)=>{
