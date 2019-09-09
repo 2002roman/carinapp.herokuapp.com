@@ -24,7 +24,7 @@ module.exports = function (io) {
 			user.getRobotData(data,(res)=>{
 				socket.emit('verifyUser_res',res)
 				if(res.status=='done'){
-					console.log('its a done',io.sockets)
+					console.log('its a done',io.sockets.clients)
 					// io.sockets.socket(res.token_robot).emit('handshake',{id:socket.id});
 				}
 			})
