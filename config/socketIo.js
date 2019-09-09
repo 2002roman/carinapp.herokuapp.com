@@ -16,6 +16,16 @@ module.exports = function (io) {
 			})
 		});
 
+		socket.on('verifyUser', function (data) {
+			// socket.role = 'user'
+			// data.status = true
+			// data.token = socket.id
+			console.log(data)
+			user.getRobotData(data,(res)=>{
+				socket.emit('verifyUser_res',res)
+			})
+		});
+
 		socket.on('disconnect',(data)=>{
 			console.log('disconnected :',socket.role)
 			console.log('disconnected client data:',socket.data)

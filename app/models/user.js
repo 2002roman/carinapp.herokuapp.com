@@ -113,6 +113,25 @@ class user{
 			else callback(result.rows[0])
 		})
 	}
+	getRobotData(data,callback){
+		this.getUserUniqueDataWithToken(data.typeAccess,data.token,(uniqueData,err)=>{
+			if(uniqueData==null){
+				callback(err)
+				return
+			}
+			var query = "SELECT token_robot FROM projects WHERE uniqueDataOfUser='"+uniqueData+"' and id='"+data.id+"'"
+			con.query(query,function(err,result){
+				con.end()
+				if(result.rowCount == 0){
+					callback({
+						status:'error',
+						error:'Project of this id undefined'
+					})
+				}
+				else callback(result.rows[0])
+			})
+		})
+	}
 	setStatus(data,callback){	
 		this.checkProject(data.uniqueDataOfUser,data.id,(res)=>{
 			if(res == null){
