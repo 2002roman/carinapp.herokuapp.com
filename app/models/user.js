@@ -134,7 +134,9 @@ class user{
 						error:'Robot is untill not connected'
 					})
 				}
-				else callback(result.rows[0])
+				else callback({
+					status:'done',
+					token_robot:result.rows[0].token_robot})
 			})
 		})
 	}
