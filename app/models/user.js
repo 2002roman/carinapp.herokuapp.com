@@ -129,7 +129,6 @@ class user{
 						error:'Project of this id undefined'
 					})
 				}else if(!result.rows[0].status){
-					console.log(result)
 					callback({
 						status:'error',
 						error:'Robot is untill not connected'

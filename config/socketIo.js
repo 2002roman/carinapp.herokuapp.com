@@ -20,9 +20,12 @@ module.exports = function (io) {
 		socket.on('verifyUser', function (data) {
 			socket.role = 'user'
 			// data.token = socket.id
-			console.log('verifyUser data:',data)
+			// console.log('verifyUser data:',data)
 			user.getRobotData(data,(res)=>{
 				socket.emit('verifyUser_res',res)
+				if(res.status=='done'){
+					io.sockets.socket(id).emit('handshake',{id:socket.id});
+				}
 			})
 		});
 
