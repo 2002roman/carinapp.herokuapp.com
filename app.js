@@ -7,7 +7,7 @@ const path = require('path')
 var server = require('http').Server(app)
 var io = require('socket.io')(server)
 require('express-group-routes')
-var ioTest = require('socket.io')(8237);
+var ioTest = require('socket.io')('/test');
 ioTest.on('connection', function(socket){
 console.log('testSOcket is active')	
   socket.on('test', function(msg){
