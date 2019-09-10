@@ -9,6 +9,7 @@ var io = require('socket.io')(server)
 require('express-group-routes')
 var ioTest = require('socket.io')(8237);
 ioTest.on('connection', function(socket){
+console.log('testSOcket is active')	
   socket.on('test', function(msg){
     console.log('test:',msg)
   });
