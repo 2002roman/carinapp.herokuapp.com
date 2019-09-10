@@ -7,9 +7,10 @@ const path = require('path')
 var server = require('http').Server(app)
 var io = require('socket.io')(server)
 require('express-group-routes')
+var ioSetup = require('socket.io')(server,{
+  path: '/auth'})
 var ioTest = require('socket.io')(server,{
   path: '/test'})
-
 // var ioTest = require('socket.io')('/test');
 ioTest.on('connection', function(socket){
 console.log('testSOcket is active')	
@@ -46,7 +47,7 @@ require('./config/routes.js')(serverApiRouter, passport)
 app.use('/api',serverApiRouter)
 
 //socket.io
-require('./config/socketIo.js')(io)
+require('./config/socketIo.js')(ioSetup)
 
 //public folder for front
 app.get('/public/:folderN/:fileN',(req,res)=>{
