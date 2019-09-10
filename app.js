@@ -14,6 +14,7 @@ console.log('testSOcket is active')
     console.log('test:',msg)
   });
 });
+console.log(ioTest)
 //passport.js
 require('./config/passport')(passport)
 
