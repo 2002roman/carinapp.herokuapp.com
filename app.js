@@ -7,14 +7,15 @@ const path = require('path')
 var server = require('http').Server(app)
 var io = require('socket.io')(server)
 require('express-group-routes')
-var ioTest = require('socket.io')('/test');
-ioTest.on('connection', function(socket){
-console.log('testSOcket is active')	
-  socket.on('test', function(msg){
-    console.log('test:',msg)
-  });
-});
-console.log(ioTest)
+// var ioTest = require('socket.io')('/test');
+// ioTest.on('connection', function(socket){
+// console.log('testSOcket is active')	
+//   socket.on('test', function(msg){
+//     console.log('test:',msg)
+//   });
+// });
+// console.log(ioTest)
+
 //passport.js
 require('./config/passport')(passport)
 
