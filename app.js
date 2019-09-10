@@ -7,7 +7,12 @@ const path = require('path')
 var server = require('http').Server(app)
 var io = require('socket.io')(server)
 require('express-group-routes')
-
+var ioTest = require('socket.io')(8237);
+ioTest.on('connection', function(socket){
+  socket.on('test', function(msg){
+    console.log('test:',msg)
+  });
+});
 //passport.js
 require('./config/passport')(passport)
 
