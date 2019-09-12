@@ -11,14 +11,14 @@ var ioSetup = require('socket.io')(server,{
   path: '/auth'})
 var ioTest = require('socket.io')(server,{
   path: '/test'})
+
 // var ioTest = require('socket.io')('/test');
 ioTest.on('connection', function(socket){
-console.log('testSOcket is active')	
+console.log('testSOcket is active',socket.id)	
   socket.on('test', function(msg){
     console.log('test:',msg)
   });
 });
-// console.log(ioTest)
 
 //passport.js
 require('./config/passport')(passport)
@@ -48,6 +48,7 @@ app.use('/api',serverApiRouter)
 
 //socket.io
 require('./config/socketIo.js')(ioSetup)
+require('./config/socketIoStream.js')(require('socket.io'),server)
 
 //public folder for front
 app.get('/public/:folderN/:fileN',(req,res)=>{
