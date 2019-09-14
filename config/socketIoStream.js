@@ -5,8 +5,10 @@ module.exports = function (socketIo,server) {
 		ioStream.push(socketIo(server,{ path: '/stream'+i }))
 
 		ioStream[i].on('connection', function (socket) {
+			var index = i
 			socket.on('stream',(data)=>{
-				ioStream[i].to(data.id).emit('stream',data.data);
+				console.log(index,ioStream)
+				ioStream[index].to(data.id).emit('stream',data.data);
 			})
 		});
 	}
