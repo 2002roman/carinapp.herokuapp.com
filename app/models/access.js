@@ -6,7 +6,6 @@ class access{
 		const con = new Pool(config.pgCon);
 		var query = "SELECT * FROM users WHERE typeAccess='local' and uniqueData='"+username+"'"
 		con.query(query,(err,res)=>{
-			console.log(res.rowCount)
 			if(res.rowCount!==0) return successCallback(res.rows[0].password)
 			else failedCallback()
 		})
@@ -16,7 +15,6 @@ class access{
 		const con = new Pool(config.pgCon);
 		var query = "SELECT * FROM users WHERE typeAccess='local' and uniqueData='"+username+"'"
 		con.query(query,(err,res)=>{
-			// console.log(res)
 			callback(res.rowCount!==0)
 		}) 
 		con.end()
@@ -39,7 +37,6 @@ class access{
 				var query = "INSERT INTO users(uniqueData, token, typeAccess) VALUES ($1, $2, $3)"
 				var values  = [ user.id, user.accessToken, 'facebook' ]
 				con.query(query,values)
-				console.log(query)
 				con.end()
 				callback()
 			}else{

@@ -11,7 +11,6 @@ module.exports = function (io) {
 			socket.data = data
 			data.status = true
 			data.token = socket.id
-			console.log(data)
 			user.setStatus(data,(res)=>{
 				socket.emit('verifyRobotAndTurnOn_res',res)
 			})
@@ -19,7 +18,6 @@ module.exports = function (io) {
 
 		socket.on('verifyUser', function (data) {
 			socket.role = 'user'
-			console.log('verifyUser data:',data)
 			user.getRobotData(data,(res)=>{
 				socket.emit('verifyUser_res',res)
 				if(res.status=='done'){
@@ -34,7 +32,6 @@ module.exports = function (io) {
 		})
 
 		socket.on('setDirection',(data)=>{
-			console.log(data)
 			if(socket.role=='user'){
 				data.id = socket.id
 				io.to(socket.token_robot).emit('direction',data);
@@ -42,8 +39,6 @@ module.exports = function (io) {
 		})
 
 		socket.on('disconnect',(data)=>{
-			console.log('disconnected :',socket.role)
-			console.log('disconnected client data:',socket.data)
 			if(socket.role == 'robot'){
 				socket.data.status = false
 				socket.data.token = ''
