@@ -2,14 +2,11 @@ var user = require('../app/models/user.js')
 var ioStream = []
 module.exports = function (socketIo,server) {
 	for(var i=0;i<10;i++){
-		console.log(i)
-
 		ioStream.push(socketIo(server,{ path: '/stream'+i }))
 
 		ioStream[i].on('connection', function (socket) {
-			socket.emit('message',socket.id)
-			socket.on('test',(data)=>{
-				console.log(data)
+			socket.on('stream',(data)=>{
+				io.to(data.id).emit('stream',data.data);
 			})
 		});
 	}

@@ -24,11 +24,14 @@ module.exports = function (io) {
 				socket.emit('verifyUser_res',res)
 				if(res.status=='done'){
 					socket.token_robot = res.token_robot
-					// console.log('its a done',io.sockets.clients())
 					io.to(res.token_robot).emit('handshake',{id:socket.id});
 				}
 			})
 		});
+
+		socket.on('setUserIdFromRobot',(id)=>{
+			socket.token_user = id
+		})
 
 		socket.on('setDirection',(data)=>{
 			console.log(data)
@@ -48,6 +51,10 @@ module.exports = function (io) {
 					if(res.status == 'error') console.log(res.error)
 				})
 			}
+		})
+
+		socket.on('setUserStreamIds',(socketsId)=>{
+			io.to(socket.token_robot).emit('stream',data);
 		})
 
 	});
