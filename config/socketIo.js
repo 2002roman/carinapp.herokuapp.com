@@ -54,7 +54,7 @@ module.exports = function (io) {
 		})
 
 		socket.on('setUserStreamIds',(socketsId)=>{
-			io.to(socket.token_robot).emit('stream',data);
+			io.to(socket.token_robot).emit('userIds',socketsId);
 		})
 
 	});
