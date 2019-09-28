@@ -15,7 +15,7 @@ var ioSetup = require('socket.io')(server,{
 require('./config/passport')(passport)
 
 //vue.js front
-app.use('/access',serveStatic(path.join(__dirname, '/dist')));
+app.use(serveStatic(path.join(__dirname, '/dist')));
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
