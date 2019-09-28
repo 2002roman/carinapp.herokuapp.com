@@ -16,7 +16,9 @@ require('./config/passport')(passport)
 
 //vue.js front
 app.use(serveStatic(path.join(__dirname, '/dist')));
-app.get('/access/login',serveStatic(path.join(__dirname, '/dist')))
+app.get('/access/login',(req,res)=>{
+	res.send('ijdkhwjdgjk')
+})
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
