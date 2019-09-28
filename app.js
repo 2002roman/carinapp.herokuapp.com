@@ -19,6 +19,9 @@ app.use(require('express').static(path.join(__dirname, '/dist')));
 app.use('/access',(req,res)=>{
 	res.redirect('https://carinapp.herokuapp.com')
 })
+app.use('/user',(req,res)=>{
+	res.redirect('https://carinapp.herokuapp.com')
+})
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
