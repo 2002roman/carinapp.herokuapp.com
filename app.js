@@ -16,7 +16,9 @@ require('./config/passport')(passport)
 
 //vue.js front
 app.use(require('express').static(path.join(__dirname, '/dist')));
-
+app.use('/access',(req,res)=>{
+	res.redirect('')
+})
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
