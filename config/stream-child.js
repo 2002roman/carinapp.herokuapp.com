@@ -7,7 +7,7 @@ process.on('message', (msg) => {
 });
 
 let startSocket = (con)=>{
-	console.log(con)
+	console.log(con.socketIo)
 	// console.log('started socket stream in index :',con.index)
 	// let ioStream = con.socketIo(con.server, { path: '/stream'+con.index })
 
