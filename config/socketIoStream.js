@@ -12,5 +12,5 @@ module.exports = function (socketIo, server) {
 			})
 		});
 	}
-	const forked = fork('stream-child.js');
+	const forked = fork('config/stream-child.js');
 }
