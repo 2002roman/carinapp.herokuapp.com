@@ -10,7 +10,7 @@ let startSocket = (con)=>{
 	
 	console.log('started socket stream in index :',con.index)
 	let ioStream = require('socket.io')(con.server, { path: '/stream'+con.index })
-
+	console.log(ioStream)
 	ioStream.on('connection', function (socket) {
 		console.log('connected in stream')
 		socket.on('stream',(data)=>{
