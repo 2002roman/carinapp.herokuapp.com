@@ -10,7 +10,7 @@ let startSocket = (con)=>{
 	eval(con.socketIo)
 	console.log(con.socketIo)
 	// console.log('started socket stream in index :',con.index)
-	let ioStream = socketIo(con.server, { path: '/stream'+con.index })
+	let ioStream = Server(con.server, { path: '/stream'+con.index })
 
 	// ioStream.on('connection', function (socket) {
 	// 	socket.on('stream',(data)=>{
