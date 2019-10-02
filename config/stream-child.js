@@ -1,15 +1,15 @@
 process.on('message', (msg) => {
-	if(msg.message_name == 'index'){
-  		index = msg.data
+	if(msg.message_name == 'start'){
+  		index = msg.data.index
   		startSocket(msg.data)
 	}else{
   		console.log(msg)
 	}
 });
 
-let startSocket = (i)=>{
-	console.log('started socket stream in index :',i)
-	let ioStream = socketIo(server, { path: '/stream'+i })
+let startSocket = (con)=>{
+	console.log('started socket stream in index :',con.index)
+	let ioStream = con.socketIo(con.server, { path: '/stream'+con.index })
 
 	ioStream.on('connection', function (socket) {
 		socket.on('stream',(data)=>{
