@@ -1,6 +1,6 @@
 process.on('message', (msg) => {
 	if(msg.message_name == 'start'){
-  		startSocket(msg.data)
+  		startSocket(msg)
 	}else{
   		console.log(msg)
 	}
