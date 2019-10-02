@@ -12,6 +12,7 @@ let startSocket = (con)=>{
 	let ioStream = require('socket.io')(con.server, { path: '/stream'+con.index })
 
 	ioStream.on('connection', function (socket) {
+		console.log('connected in stream')
 		socket.on('stream',(data)=>{
 			ioStream.to(data.id).emit('stream', data.image);
 		})
