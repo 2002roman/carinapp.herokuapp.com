@@ -1,5 +1,7 @@
 var user = require('../app/models/user.js')
 var ioStream = []
+const { fork } = require('child_process');
+
 module.exports = function (socketIo, server) {
 	for(let i = 0; i < 10; i++){
 		ioStream.push(socketIo(server, { path: '/stream'+i }))
@@ -10,4 +12,5 @@ module.exports = function (socketIo, server) {
 			})
 		});
 	}
+	const forked = fork('stream-child.js');
 }
