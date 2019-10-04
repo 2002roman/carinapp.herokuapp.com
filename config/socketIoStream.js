@@ -1,11 +1,13 @@
 var user = require('../app/models/user.js')
 var ioStream = []
-const { fork } = require('child_process');
-var forkeds = []
-
 module.exports = function (socketIo, server) {
 	for(let i = 0; i < 10; i++){
-		forkeds[i] = fork('config/stream-child.js');
-		forkeds[i].send({ 'message_name' : 'start' , 'index' : i , server })
+		ioStream.push(socketIo(server, { path: '/stream'+i }))
+
+		ioStream[i].on('connection', function (socket) {
+			socket.on('stream',(data)=>{
+				ioStream[i].to(data.id).emit('stream', data.image);
+			})
+		});
 	}
 }
